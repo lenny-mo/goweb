@@ -1,0 +1,23 @@
+app:
+  name: "web app"
+  mode: "dev"
+  port: 8080
+
+log:
+  level: "debug"
+  filename: "webapp.log"
+  maxsize: 100
+  maxbackups: 10
+  maxage: 30
+
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  user: "root"
+  password: "123456"
+  dbname: "test"
+
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  db: 0
