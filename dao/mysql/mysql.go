@@ -39,3 +39,7 @@ func Init() (err error) {
 	// 函数成功完成，返回 nil（无错误）。
 	return
 }
+
+func Close() {
+	db.Close()
+}

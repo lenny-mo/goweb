@@ -8,8 +8,10 @@ import (
 	"github.com/spf13/viper"
 )
 
+var rdb *redis.Client
+
 func Init() (err error) {
-	rdb := redis.NewClient(&redis.Options{
+	rdb = redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprint("%s:%d", viper.GetString("redis.host"), viper.GetInt("redis.port")),
 		Password: viper.GetString("redis.password"),
 		DB:       viper.GetInt("redis.db"),
@@ -23,4 +25,8 @@ func Init() (err error) {
 	}
 
 	return
+}
+
+func Close() {
+	rdb.Close()
 }
