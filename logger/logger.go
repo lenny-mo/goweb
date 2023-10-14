@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"go_web_app/settings"
 	"net"
 	"net/http"
 	"net/http/httputil"
@@ -18,16 +19,15 @@ import (
 )
 
 // Init 初始化lg
-func Init() (err error) {
+func Init(conf *settings.LogConfig) (err error) {
 	writeSyncer := getLogWriter(
-		viper.GetString("log.filename"),
-		viper.GetInt("log.maxsize"),
-		viper.GetInt("log.maxbackups"),
-		viper.GetInt("log.maxage"),
+		conf.Filename,
+		conf.MaxSize,
+		conf.MaxBackups,
+		conf.MaxAge,
 	)
 
 	encoder := getEncoder()
-
 	var level = new(zapcore.Level)
 
 	err = level.UnmarshalText([]byte(viper.GetString("log.level")))

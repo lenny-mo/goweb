@@ -1,0 +1,3 @@
+{"level":"ERROR","time":"2023-10-11T22:55:13.402+0800","caller":"mysql/mysql.go:35","msg":"connect DB failed, err: ","error":"Error 1045: Access denied for user 'root'@'localhost' (using password: YES)"}
+{"level":"ERROR","time":"2023-10-13T23:31:16.084+0800","caller":"mysql/mysql.go:37","msg":"connect DB failed, err: ","error":"Error 1045: Access denied for user 'root'@'localhost' (using password: YES)"}
+{"level":"ERROR","time":"2023-10-13T23:41:48.423+0800","caller":"mysql/mysql.go:37","msg":"connect DB failed, err: ","error":"Error 1045: Access denied for user 'root'@'localhost' (using password: YES)"}

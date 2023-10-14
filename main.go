@@ -32,20 +32,20 @@ func main() {
 	}
 
 	// 2. log文件初始化
-	if err := logger.Init(); err != nil {
+	if err := logger.Init(settings.Config.LogConfig); err != nil {
 		fmt.Println("Init logger failed, err: ", err)
 		panic(err)
 	}
 
 	// 3. mysql数据库初始化
-	if err := mysql.Init(); err != nil {
+	if err := mysql.Init(settings.Config.MySQLConfig); err != nil {
 		fmt.Println("Init mysql failed, err: ", err)
 		panic(err)
 	}
 	defer mysql.Close()
 
 	// 4. redis数据库初始化
-	if err := redis.Init(); err != nil {
+	if err := redis.Init(settings.Config.RedisConfig); err != nil {
 		fmt.Println("Init redis failed, err: ", err)
 		panic(err)
 	}
