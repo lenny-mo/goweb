@@ -1,6 +1,7 @@
 package router
 
 import (
+	"go_web_app/controllers"
 	"go_web_app/logger"
 
 	"github.com/gin-gonic/gin"
@@ -16,6 +17,9 @@ func Init() (*gin.Engine, error) {
 			"message": "hello world",
 		})
 	})
+
+	// 注册业务路由
+	router.POST("/signup", controllers.SignUpHandler)
 
 	return router, nil
 }

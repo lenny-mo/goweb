@@ -9,12 +9,20 @@ import (
 )
 
 // Init 把项目的配置文件读取到 viper 中
-func Init() error {
+func Init(configFileName string) error {
 
 	// 1. 通过viper 读取配置文件信息
-	viper.SetConfigName("config") // 设置配置文件的名称, 路径在项目根目录下的config.yaml
-	viper.AddConfigPath(".")      // 添加配置文件的查找路径, 项目的根目录
-	err := viper.ReadInConfig()   // 读取配置文件内容
+	// 通过命令行传入的配置文件名读取配置文件信息
+	viper.SetConfigFile(configFileName)
+
+	// 2. 两个命令搭配使用
+	//viper.SetConfigName("config") // 设置配置文件的名称, 路径在项目根目录下的config.yaml，不包括后缀
+	//viper.AddConfigPath(".")      // 添加配置文件的查找路径, 项目的根目录，可以添加多个路径
+
+	// 配合etcd使用,
+	// viper.SetConfigType("yaml")
+
+	err := viper.ReadInConfig() // 读取配置文件内容
 	if err != nil {
 		// 如果读取配置文件出错，则输出错误信息
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {

@@ -2,18 +2,24 @@ package settings
 
 // -------------------------- config struct --------------------------- //
 var (
-	Config = new(AppConfig)
+	Config = new(Conf)
 )
 
-// AppConfig 是应用的配置结构体。
-type AppConfig struct {
-	Name         string                 `mapstructure:"name"`    // Name 是应用的名称。
-	Mode         string                 `mapstructure:"mode"`    // Mode 是应用的运行模式，例如：development, production等。
-	Version      string                 `mapstructure:"version"` // Version 是应用的版本号。
-	Port         int                    `mapstructure:"port"`    // Port 是应用监听的端口号。
+type Conf struct {
+	*AppConfig   `mapstructure:"app"`   // AppConfig 是应用的配置。
 	*LogConfig   `mapstructure:"Log"`   // LogConfig 是应用的日志配置。
 	*MySQLConfig `mapstructure:"mysql"` // MySQLConfig 是应用的 MySQL 数据库配置。
 	*RedisConfig `mapstructure:"redis"` // RedisConfig 是应用的 Redis 数据库配置。
+}
+
+// AppConfig 是应用的配置结构体。
+type AppConfig struct {
+	Name      string `mapstructure:"name"`      // Name 是应用的名称。
+	Mode      string `mapstructure:"mode"`      // Mode 是应用的运行模式，例如：development, production等。
+	Version   string `mapstructure:"version"`   // Version 是应用的版本号。
+	Port      int    `mapstructure:"port"`      // Port 是应用监听的端口号。
+	StartTime string `mapstructure:"starttime"` // StartTime 是雪花算法的起始时间。
+	MachineId int64  `mapstructure:"machineid"` // MachineId 是雪花算法的机器ID。
 }
 
 // LogConfig 结构体定义了日志配置的各项参数。

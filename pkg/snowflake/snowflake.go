@@ -12,11 +12,11 @@ var (
 
 func Init(startTime string, machineId int64) (err error) {
 	// 1. 转化成Time类型
-	start, err := time.Parse("2006-01-02", startTime)
+	// 2006-01-02 15:04:05 是go语言诞生的时间
+	start, err := time.Parse("2006-01-02 15:04:05", startTime)
 	if err != nil {
 		return err
 	}
-
 	// 2. Epoch 是 snowflake 包的一个公共变量，用于定义雪花算法中的自定义纪元时间（起点时间）
 	snowflake.Epoch = start.UnixNano() / 1000000 // 把纳秒转换为毫秒
 

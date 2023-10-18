@@ -11,7 +11,7 @@ var rdb *redis.Client
 
 func Init(conf *settings.RedisConfig) (err error) {
 	rdb = redis.NewClient(&redis.Options{
-		Addr:     fmt.Sprint("%s:%d", conf.Host, conf.Port),
+		Addr:     fmt.Sprintf("%s:%d", conf.Host, conf.Port),
 		Password: conf.Password,
 		DB:       conf.DB,
 		PoolSize: conf.PoolSize,

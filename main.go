@@ -2,10 +2,12 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"go_web_app/dao/mysql"
 	"go_web_app/dao/redis"
 	"go_web_app/logger"
+	"go_web_app/pkg/snowflake"
 	"go_web_app/router"
 	"go_web_app/settings"
 	"net/http"
@@ -20,13 +22,18 @@ import (
 
 func main() {
 
-	// 每当完成一个任务，你就记录一个日志。但是，日志并不是立即被保存，而是暂时存放在内存中。
+	// 日志并不是立即被保存，而是暂时存放在内存中。
 	// 当内存中的日志量达到一定的量时，再将这些日志批量写入到磁盘中。
 	// 无论程序是正常结束还是异常退出，都会确保这些日志被保存到文件或其他存储位置。
 	defer zap.L().Sync()
 
+	// 从终端接收配置文件路径
+	var configFile string
+	flag.StringVar(&configFile, "c", "config.yaml", "配置文件的路径")
+	flag.Parse()
+
 	// 1. 初始化配置文件
-	if err := settings.Init(); err != nil {
+	if err := settings.Init(configFile); err != nil {
 		fmt.Println("Init settings failed, err: ", err)
 		panic(err)
 	}
@@ -55,6 +62,12 @@ func main() {
 	router, err := router.Init()
 	if err != nil {
 		fmt.Println("Init router failed, err: ", err)
+		panic(err)
+	}
+
+	// 6. 注册雪花算法
+	if err := snowflake.Init(settings.Config.StartTime, settings.Config.MachineId); err != nil {
+		fmt.Println("Init snowflake failed, err: ", err)
 		panic(err)
 	}
 
