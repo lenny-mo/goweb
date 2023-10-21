@@ -39,7 +39,7 @@ func main() {
 	}
 
 	// 2. log文件初始化
-	if err := logger.Init(settings.Config.LogConfig); err != nil {
+	if err := logger.Init(settings.Config.LogConfig, settings.Config.Mode); err != nil {
 		fmt.Println("Init logger failed, err: ", err)
 		panic(err)
 	}

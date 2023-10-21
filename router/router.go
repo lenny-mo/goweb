@@ -18,8 +18,12 @@ func Init() (*gin.Engine, error) {
 		})
 	})
 
-	// 注册业务路由
-	router.POST("/signup", controllers.SignUpHandler)
+	// 注册业务路由组
+	userGroup := router.Group("/user")
+	{
+		userGroup.POST("/signup", controllers.SignUpHandler)
+		userGroup.POST("/login", controllers.LoginHandler)
+	}
 
 	return router, nil
 }

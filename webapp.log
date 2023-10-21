@@ -36,3 +36,45 @@
 {"level":"INFO","time":"2023-10-17T22:02:44.531+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
 {"level":"DEBUG","time":"2023-10-17T22:02:44.531+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
 {"level":"INFO","time":"2023-10-17T22:02:44.531+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000322459}
+{"level":"INFO","time":"2023-10-20T11:53:02.386+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T11:53:02.421+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T11:53:02.421+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.035094916}
+{"level":"INFO","time":"2023-10-20T11:53:12.338+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T11:53:12.345+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T11:53:12.346+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.007601542}
+{"level":"INFO","time":"2023-10-20T11:53:13.062+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T11:53:13.080+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T11:53:13.080+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.018246541}
+{"level":"INFO","time":"2023-10-20T11:53:13.625+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T11:53:13.644+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T11:53:13.644+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.018921542}
+{"level":"INFO","time":"2023-10-20T12:01:26.518+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T12:01:26.537+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T12:01:26.537+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.020858}
+{"level":"INFO","time":"2023-10-20T12:01:27.141+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T12:01:27.160+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T12:01:27.160+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.019691708}
+{"level":"INFO","time":"2023-10-20T12:02:47.318+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T12:02:47.324+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T12:02:47.324+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.006075416}
+{"level":"INFO","time":"2023-10-20T12:08:37.487+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T12:08:37.501+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T12:08:37.501+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.016270375}
+{"level":"INFO","time":"2023-10-20T12:08:38.968+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T12:08:38.989+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T12:08:38.989+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.021012208}
+{"level":"INFO","time":"2023-10-20T12:08:39.743+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-20T12:08:39.767+0800","caller":"controllers/user.go:37","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-20T12:08:39.767+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.024917292}
+{"level":"INFO","time":"2023-10-20T12:10:44.580+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"ERROR","time":"2023-10-20T12:10:44.595+0800","caller":"controllers/user.go:31","msg":"logic.Signup() failed","error":"用户已经存在 or 查询出错"}
+{"level":"INFO","time":"2023-10-20T12:10:44.595+0800","caller":"logger/logger.go:77","msg":"/signup","status":400,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.015720584}
+{"level":"INFO","time":"2023-10-20T12:31:12.306+0800","caller":"controllers/user.go:26","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"qq@gmail.com","gender":1}}
+{"level":"ERROR","time":"2023-10-20T12:31:12.337+0800","caller":"controllers/user.go:31","msg":"logic.Signup() failed","error":"用户已经存在 or 查询出错"}
+{"level":"INFO","time":"2023-10-20T12:31:12.338+0800","caller":"logger/logger.go:86","msg":"/signup","status":400,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.032159459}
+{"level":"ERROR","time":"2023-10-20T16:12:47.823+0800","caller":"controllers/user.go:49","msg":"Login with invalid param","error":"invalid character '}' looking for beginning of object key string"}
+{"level":"INFO","time":"2023-10-20T16:12:47.830+0800","caller":"logger/logger.go:86","msg":"/user/login","status":400,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.007228333}
+{"level":"DEBUG","time":"2023-10-20T16:12:51.570+0800","caller":"controllers/user.go:64","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-20T16:12:51.571+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.031470666}
+{"level":"ERROR","time":"2023-10-20T16:12:54.701+0800","caller":"controllers/user.go:59","msg":"logic.Login() failed","error":"用户登录密码错误"}
+{"level":"INFO","time":"2023-10-20T16:12:54.702+0800","caller":"logger/logger.go:86","msg":"/user/login","status":400,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.02202}

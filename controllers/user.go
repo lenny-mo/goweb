@@ -18,9 +18,7 @@ func SignUpHandler(c *gin.Context) {
 	if err := c.ShouldBindJSON(param); err != nil {
 		// 参数有误
 		zap.L().Error("SignUp with invalid param", zap.Error(err))
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "请求参数有误",
-		})
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
 		return
 	}
 	zap.L().Info("SignUp with param", zap.Any("param", *param)) // 记录结构体信息
@@ -30,13 +28,30 @@ func SignUpHandler(c *gin.Context) {
 	if err != nil {
 		zap.L().Error("logic.Signup() failed", zap.Error(err))
 		// 3. 返回响应
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "bad request",
-		})
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
 	} else {
 		zap.L().Debug("logic.Signup() success")
-		c.JSON(http.StatusOK, gin.H{
-			"msg": "success",
-		})
+		ReturnResponse(c, http.StatusOK, SuccessCode)
+	}
+}
+
+func LoginHandler(c *gin.Context) {
+	// 1. 参数校验
+	params := new(models.LoginParam)
+
+	if err := c.ShouldBindJSON(params); err != nil {
+		zap.L().Error("Login with invalid param", zap.Error(err))
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		return
+	}
+
+	// 2. 业务处理: 判断用户输入的密码是否和数据库中的一致
+	err := logic.Login(params)
+	if err != nil {
+		zap.L().Error("logic.Login() failed", zap.Error(err))
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+	} else {
+		zap.L().Debug("logic.Login() success")
+		ReturnResponse(c, http.StatusOK, SuccessCode)
 	}
 }
