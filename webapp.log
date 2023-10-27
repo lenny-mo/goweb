@@ -78,3 +78,243 @@
 {"level":"INFO","time":"2023-10-20T16:12:51.571+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.031470666}
 {"level":"ERROR","time":"2023-10-20T16:12:54.701+0800","caller":"controllers/user.go:59","msg":"logic.Login() failed","error":"用户登录密码错误"}
 {"level":"INFO","time":"2023-10-20T16:12:54.702+0800","caller":"logger/logger.go:86","msg":"/user/login","status":400,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.02202}
+{"level":"ERROR","time":"2023-10-22T23:44:48.363+0800","caller":"controllers/user.go:51","msg":"logic.Login() failed","error":"用户登录密码错误"}
+{"level":"INFO","time":"2023-10-22T23:44:48.365+0800","caller":"logger/logger.go:86","msg":"/user/login","status":400,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.018750375}
+{"level":"DEBUG","time":"2023-10-22T23:44:53.595+0800","caller":"controllers/user.go:54","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-22T23:44:53.595+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.020799792}
+{"level":"DEBUG","time":"2023-10-23T17:14:02.107+0800","caller":"controllers/user.go:60","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T17:14:02.108+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.029524667}
+{"level":"INFO","time":"2023-10-23T17:14:18.874+0800","caller":"logger/logger.go:86","msg":"/user/index","status":404,"method":"POST","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000000833}
+{"level":"INFO","time":"2023-10-23T17:14:55.634+0800","caller":"logger/logger.go:86","msg":"/user/index","status":404,"method":"POST","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.00000075}
+{"level":"INFO","time":"2023-10-23T17:15:04.815+0800","caller":"logger/logger.go:86","msg":"/user/index","status":404,"method":"POST","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000000792}
+{"level":"DEBUG","time":"2023-10-23T17:16:52.082+0800","caller":"controllers/user.go:60","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T17:16:52.083+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.019448625}
+{"level":"INFO","time":"2023-10-23T17:17:05.086+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000149459}
+{"level":"DEBUG","time":"2023-10-23T20:45:49.242+0800","caller":"controllers/user.go:60","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T20:45:49.243+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.041577459}
+{"level":"INFO","time":"2023-10-23T20:46:11.693+0800","caller":"logger/logger.go:86","msg":"/user/index","status":401,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000112166}
+{"level":"DEBUG","time":"2023-10-23T20:46:17.312+0800","caller":"controllers/user.go:60","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T20:46:17.312+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.01957075}
+{"level":"INFO","time":"2023-10-23T20:46:28.183+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000084792}
+{"level":"DEBUG","time":"2023-10-23T20:50:25.138+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T20:50:25.138+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.010876}
+{"level":"INFO","time":"2023-10-23T20:50:42.361+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000178709}
+{"level":"DEBUG","time":"2023-10-23T20:52:35.093+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T20:52:35.094+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.0148545}
+{"level":"INFO","time":"2023-10-23T20:52:44.430+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000142666}
+{"level":"INFO","time":"2023-10-23T20:52:47.912+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000125208}
+{"level":"DEBUG","time":"2023-10-23T21:41:11.918+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T21:41:11.920+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.012615458}
+{"level":"ERROR","time":"2023-10-23T21:41:22.159+0800","caller":"controllers/user.go:27","msg":"SignUp with invalid param","error":"Key: 'SignupParam.Email' Error:Field validation for 'Email' failed on the 'required' tag\nKey: 'SignupParam.Gender' Error:Field validation for 'Gender' failed on the 'required' tag"}
+{"level":"INFO","time":"2023-10-23T21:41:22.159+0800","caller":"logger/logger.go:86","msg":"/user/signup","status":400,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000636541}
+{"level":"INFO","time":"2023-10-23T21:48:19.714+0800","caller":"controllers/user.go:31","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"ERROR","time":"2023-10-23T21:48:19.727+0800","caller":"controllers/user.go:36","msg":"logic.Signup() failed","error":"用户已经存在 or 查询出错"}
+{"level":"INFO","time":"2023-10-23T21:48:19.728+0800","caller":"logger/logger.go:86","msg":"/user/signup","status":400,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.013772292}
+{"level":"INFO","time":"2023-10-23T21:48:35.367+0800","caller":"controllers/user.go:31","msg":"SignUp with param","param":{"username":"test","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"ERROR","time":"2023-10-23T21:48:35.383+0800","caller":"controllers/user.go:36","msg":"logic.Signup() failed","error":"用户已经存在 or 查询出错"}
+{"level":"INFO","time":"2023-10-23T21:48:35.384+0800","caller":"logger/logger.go:86","msg":"/user/signup","status":400,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.016289083}
+{"level":"INFO","time":"2023-10-23T21:49:01.541+0800","caller":"controllers/user.go:31","msg":"SignUp with param","param":{"username":"hulu","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-23T21:49:01.590+0800","caller":"controllers/user.go:40","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-23T21:49:01.590+0800","caller":"logger/logger.go:86","msg":"/user/signup","status":200,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.049446084}
+{"level":"INFO","time":"2023-10-23T21:50:42.183+0800","caller":"controllers/user.go:31","msg":"SignUp with param","param":{"username":"apple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"DEBUG","time":"2023-10-23T21:50:42.215+0800","caller":"controllers/user.go:40","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2023-10-23T21:50:42.215+0800","caller":"logger/logger.go:86","msg":"/user/signup","status":200,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.032191334}
+{"level":"INFO","time":"2023-10-23T21:50:54.420+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000123083}
+{"level":"DEBUG","time":"2023-10-23T21:51:13.689+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T21:51:13.689+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.025362834}
+{"level":"INFO","time":"2023-10-23T21:51:23.729+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000083875}
+{"level":"DEBUG","time":"2023-10-23T22:26:16.169+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:26:16.170+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.01639225}
+{"level":"DEBUG","time":"2023-10-23T22:28:20.741+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:28:20.742+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.018701167}
+{"level":"INFO","time":"2023-10-23T22:28:41.990+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000243125}
+{"level":"DEBUG","time":"2023-10-23T22:37:50.121+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:37:50.124+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.024737291}
+{"level":"INFO","time":"2023-10-23T22:37:57.963+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000154625}
+{"level":"DEBUG","time":"2023-10-23T22:38:28.200+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:38:28.201+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.022045333}
+{"level":"INFO","time":"2023-10-23T22:38:37.874+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000295}
+{"level":"DEBUG","time":"2023-10-23T22:39:05.389+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:39:05.390+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.019760791}
+{"level":"INFO","time":"2023-10-23T22:39:20.009+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.00019475}
+{"level":"DEBUG","time":"2023-10-23T22:44:13.396+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:44:13.396+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.01220975}
+{"level":"INFO","time":"2023-10-23T22:44:34.702+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000083333}
+{"level":"DEBUG","time":"2023-10-23T22:49:01.639+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:49:01.640+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.048918834}
+{"level":"INFO","time":"2023-10-23T22:49:09.446+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.00016775}
+{"level":"INFO","time":"2023-10-23T22:49:54.836+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000546375}
+{"level":"DEBUG","time":"2023-10-23T22:50:00.936+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:50:00.936+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.030745209}
+{"level":"DEBUG","time":"2023-10-23T22:52:34.846+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:52:34.847+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.010890708}
+{"level":"DEBUG","time":"2023-10-23T22:54:12.602+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:54:12.603+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.024611541}
+{"level":"DEBUG","time":"2023-10-23T22:57:43.357+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-23T22:57:43.358+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.018932666}
+{"level":"INFO","time":"2023-10-23T22:57:49.624+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000224542}
+{"level":"DEBUG","time":"2023-10-24T18:32:43.469+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-24T18:32:43.470+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.021487042}
+{"level":"DEBUG","time":"2023-10-24T18:32:49.238+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-24T18:32:49.238+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.016525125}
+{"level":"DEBUG","time":"2023-10-24T18:33:15.166+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-24T18:33:15.167+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.013784542}
+{"level":"ERROR","time":"2023-10-24T18:33:22.707+0800","caller":"pkg/jwt.go:73","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-24T18:33:22.707+0800","caller":"logger/logger.go:86","msg":"/user/index","status":401,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.000244042}
+{"level":"INFO","time":"2023-10-24T18:33:27.275+0800","caller":"controllers/user.go:31","msg":"SignUp with param","param":{"username":"apple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"ERROR","time":"2023-10-24T18:33:27.302+0800","caller":"controllers/user.go:36","msg":"logic.Signup() failed","error":"用户已经存在 or 查询出错"}
+{"level":"INFO","time":"2023-10-24T18:33:27.303+0800","caller":"logger/logger.go:86","msg":"/user/signup","status":400,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.028133458}
+{"level":"ERROR","time":"2023-10-25T00:09:00.250+0800","caller":"mysql/init.go:33","msg":"connect DB failed, err: ","error":"dial tcp 127.0.0.1:3307: connect: connection refused"}
+{"level":"DEBUG","time":"2023-10-25T00:10:11.932+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-25T00:10:11.933+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.32.3","errors":"","cost":0.028973542}
+{"level":"DEBUG","time":"2023-10-25T17:19:35.514+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-25T17:19:35.516+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.0152075}
+{"level":"DEBUG","time":"2023-10-25T17:19:37.323+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-25T17:19:37.323+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.0242725}
+{"level":"DEBUG","time":"2023-10-25T17:19:38.014+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-25T17:19:38.014+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.005449458}
+{"level":"DEBUG","time":"2023-10-25T17:19:46.975+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-25T17:19:46.975+0800","caller":"logger/logger.go:86","msg":"/user/index","status":200,"method":"GET","path":"/user/index","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.000240917}
+{"level":"INFO","time":"2023-10-25T17:28:36.196+0800","caller":"logger/logger.go:86","msg":"/api/v1/posts2","status":404,"method":"GET","path":"/api/v1/posts2","query":"page=1&order=time","ip":"127.0.0.1","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36","errors":"","cost":0.000000542}
+{"level":"INFO","time":"2023-10-25T17:28:47.134+0800","caller":"logger/logger.go:86","msg":"/api/v1/login","status":404,"method":"POST","path":"/api/v1/login","query":"","ip":"127.0.0.1","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36","errors":"","cost":0.000022458}
+{"level":"INFO","time":"2023-10-25T18:54:32.730+0800","caller":"logger/logger.go:86","msg":"/api/v1/login","status":404,"method":"POST","path":"/api/v1/login","query":"","ip":"127.0.0.1","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36","errors":"","cost":0.00000225}
+{"level":"INFO","time":"2023-10-25T18:55:33.152+0800","caller":"logger/logger.go:86","msg":"/user/login/api/v1/login","status":404,"method":"POST","path":"/user/login/api/v1/login","query":"","ip":"127.0.0.1","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36","errors":"","cost":0.000028959}
+{"level":"INFO","time":"2023-10-25T18:58:51.378+0800","caller":"logger/logger.go:86","msg":"/api/v1/login","status":404,"method":"POST","path":"/api/v1/login","query":"","ip":"127.0.0.1","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36","errors":"","cost":0.000029042}
+{"level":"DEBUG","time":"2023-10-25T19:03:05.438+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-25T19:03:05.438+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"127.0.0.1","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36","errors":"","cost":0.014900583}
+{"level":"DEBUG","time":"2023-10-26T12:45:38.519+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T12:45:38.521+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.048528292}
+{"level":"DEBUG","time":"2023-10-26T12:47:50.646+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T12:47:50.653+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.007051333}
+{"level":"DEBUG","time":"2023-10-26T12:50:44.155+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T12:50:44.159+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.00480875}
+{"level":"DEBUG","time":"2023-10-26T12:50:45.377+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T12:50:45.395+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.01738775}
+{"level":"DEBUG","time":"2023-10-26T12:50:46.193+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T12:50:46.201+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.007710209}
+{"level":"DEBUG","time":"2023-10-26T12:50:49.434+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T12:50:49.435+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.008742208}
+{"level":"DEBUG","time":"2023-10-26T12:51:03.831+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T12:51:03.837+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.00552175}
+{"level":"DEBUG","time":"2023-10-26T12:51:25.634+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T12:51:25.651+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.018913708}
+{"level":"DEBUG","time":"2023-10-26T12:52:59.239+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T12:52:59.246+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.008094292}
+{"level":"DEBUG","time":"2023-10-26T12:55:49.586+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-26T12:55:49.601+0800","caller":"mysql/community.go:22","msg":"query community list failed","error":"missing destination name community_id in *[]models.Community"}
+{"level":"ERROR","time":"2023-10-26T12:55:49.601+0800","caller":"controllers/community.go:18","msg":"logic.GetCommunityList() failed","error":"missing destination name community_id in *[]models.Community"}
+{"level":"INFO","time":"2023-10-26T12:55:49.602+0800","caller":"logger/logger.go:86","msg":"/community/list","status":500,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.016037417}
+{"level":"DEBUG","time":"2023-10-26T12:55:53.766+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T12:55:53.767+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.028679208}
+{"level":"DEBUG","time":"2023-10-26T12:56:02.241+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-26T12:56:02.249+0800","caller":"mysql/community.go:22","msg":"query community list failed","error":"missing destination name community_id in *[]models.Community"}
+{"level":"ERROR","time":"2023-10-26T12:56:02.250+0800","caller":"controllers/community.go:18","msg":"logic.GetCommunityList() failed","error":"missing destination name community_id in *[]models.Community"}
+{"level":"INFO","time":"2023-10-26T12:56:02.250+0800","caller":"logger/logger.go:86","msg":"/community/list","status":500,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.008920167}
+{"level":"DEBUG","time":"2023-10-26T12:56:15.647+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-26T12:56:15.653+0800","caller":"mysql/community.go:22","msg":"query community list failed","error":"missing destination name community_id in *[]models.Community"}
+{"level":"ERROR","time":"2023-10-26T12:56:15.653+0800","caller":"controllers/community.go:18","msg":"logic.GetCommunityList() failed","error":"missing destination name community_id in *[]models.Community"}
+{"level":"INFO","time":"2023-10-26T12:56:15.653+0800","caller":"logger/logger.go:86","msg":"/community/list","status":500,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.005660958}
+{"level":"DEBUG","time":"2023-10-26T12:56:58.299+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T12:56:58.299+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.01245175}
+{"level":"DEBUG","time":"2023-10-26T12:57:07.458+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-26T12:57:07.463+0800","caller":"mysql/community.go:22","msg":"query community list failed","error":"missing destination name community_id in *[]models.Community"}
+{"level":"ERROR","time":"2023-10-26T12:57:07.463+0800","caller":"controllers/community.go:18","msg":"logic.GetCommunityList() failed","error":"missing destination name community_id in *[]models.Community"}
+{"level":"INFO","time":"2023-10-26T12:57:07.463+0800","caller":"logger/logger.go:86","msg":"/community/list","status":500,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.005129166}
+{"level":"DEBUG","time":"2023-10-26T12:58:26.793+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T12:58:26.808+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.015838083}
+{"level":"DEBUG","time":"2023-10-26T14:56:35.819+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T14:56:35.839+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.019837458}
+{"level":"ERROR","time":"2023-10-26T15:05:33.789+0800","caller":"pkg/jwt.go:73","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:05:33.791+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.002522167}
+{"level":"DEBUG","time":"2023-10-26T15:05:38.153+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:05:38.154+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.01309}
+{"level":"DEBUG","time":"2023-10-26T15:05:47.482+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T15:05:47.490+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.007853833}
+{"level":"DEBUG","time":"2023-10-26T15:08:09.662+0800","caller":"pkg/jwt.go:79","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T15:08:09.664+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.002840583}
+{"level":"DEBUG","time":"2023-10-26T15:45:29.041+0800","caller":"pkg/jwt.go:89","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T15:45:29.054+0800","caller":"logger/logger.go:86","msg":"/community/list","status":200,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.013056792}
+{"level":"DEBUG","time":"2023-10-26T15:45:31.726+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:45:31.726+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.019295042}
+{"level":"ERROR","time":"2023-10-26T15:45:39.743+0800","caller":"pkg/jwt.go:83","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:45:39.743+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.000313583}
+{"level":"ERROR","time":"2023-10-26T15:45:41.889+0800","caller":"pkg/jwt.go:83","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:45:41.889+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.000218708}
+{"level":"ERROR","time":"2023-10-26T15:45:44.813+0800","caller":"pkg/jwt.go:83","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:45:44.814+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.000526375}
+{"level":"DEBUG","time":"2023-10-26T15:45:48.950+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:45:48.950+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.008177542}
+{"level":"DEBUG","time":"2023-10-26T15:45:50.931+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:45:50.932+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.00391875}
+{"level":"ERROR","time":"2023-10-26T15:46:01.157+0800","caller":"pkg/jwt.go:83","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:46:01.157+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.000304375}
+{"level":"DEBUG","time":"2023-10-26T15:49:16.812+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:49:16.814+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.012649625}
+{"level":"DEBUG","time":"2023-10-26T15:49:18.696+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:49:18.696+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.01061125}
+{"level":"ERROR","time":"2023-10-26T15:49:27.236+0800","caller":"pkg/jwt.go:84","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:49:27.236+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.000394458}
+{"level":"DEBUG","time":"2023-10-26T15:52:14.131+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:52:14.133+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.015637042}
+{"level":"ERROR","time":"2023-10-26T15:52:22.416+0800","caller":"pkg/jwt.go:83","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:52:22.416+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.000237042}
+{"level":"ERROR","time":"2023-10-26T15:52:23.416+0800","caller":"pkg/jwt.go:83","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:52:23.417+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.000240541}
+{"level":"DEBUG","time":"2023-10-26T15:53:36.008+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:53:36.009+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.006360666}
+{"level":"ERROR","time":"2023-10-26T15:53:44.327+0800","caller":"pkg/jwt.go:83","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:53:44.327+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.00028425}
+{"level":"ERROR","time":"2023-10-26T15:53:45.508+0800","caller":"pkg/jwt.go:83","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T15:53:45.508+0800","caller":"logger/logger.go:86","msg":"/community/list","status":401,"method":"GET","path":"/community/list","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.00032725}
+{"level":"DEBUG","time":"2023-10-26T15:56:33.782+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:56:33.782+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.0125725}
+{"level":"DEBUG","time":"2023-10-26T15:56:52.215+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T15:56:52.216+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.010994083}
+{"level":"DEBUG","time":"2023-10-26T16:07:12.263+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T16:07:12.264+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.011965792}
+{"level":"DEBUG","time":"2023-10-26T16:11:39.294+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T16:11:39.295+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.011248084}
+{"level":"ERROR","time":"2023-10-26T19:12:26.659+0800","caller":"pkg/jwt.go:87","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2023-10-26T19:12:26.660+0800","caller":"logger/logger.go:86","msg":"/community/2","status":401,"method":"GET","path":"/community/2","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.001285458}
+{"level":"DEBUG","time":"2023-10-26T19:12:30.184+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-26T19:12:30.184+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.023435792}
+{"level":"DEBUG","time":"2023-10-26T19:12:40.031+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-26T19:12:40.041+0800","caller":"mysql/community.go:35","msg":"query community detail failed","error":"nil pointer passed to StructScan destination"}
+{"level":"ERROR","time":"2023-10-26T19:12:40.041+0800","caller":"controllers/community.go:47","msg":"logic.GetCommunityDetailById(communityId) failed","error":"nil pointer passed to StructScan destination"}
+{"level":"INFO","time":"2023-10-26T19:12:40.041+0800","caller":"logger/logger.go:86","msg":"/community/2","status":500,"method":"GET","path":"/community/2","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.010203375}
+{"level":"DEBUG","time":"2023-10-26T19:14:35.275+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-26T19:14:35.295+0800","caller":"mysql/community.go:37","msg":"query community detail failed","error":"expected slice but got struct"}
+{"level":"ERROR","time":"2023-10-26T19:14:35.296+0800","caller":"controllers/community.go:47","msg":"logic.GetCommunityDetailById(communityId) failed","error":"expected slice but got struct"}
+{"level":"INFO","time":"2023-10-26T19:14:35.296+0800","caller":"logger/logger.go:86","msg":"/community/2","status":500,"method":"GET","path":"/community/2","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.02179675}
+{"level":"DEBUG","time":"2023-10-26T19:18:24.742+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T19:18:24.759+0800","caller":"logger/logger.go:86","msg":"/community/2","status":200,"method":"GET","path":"/community/2","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.017104834}
+{"level":"DEBUG","time":"2023-10-26T19:18:33.114+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T19:18:33.120+0800","caller":"logger/logger.go:86","msg":"/community/1","status":200,"method":"GET","path":"/community/1","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.007053042}
+{"level":"DEBUG","time":"2023-10-26T19:20:37.781+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T19:20:37.799+0800","caller":"logger/logger.go:86","msg":"/community/1","status":200,"method":"GET","path":"/community/1","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.018613708}
+{"level":"DEBUG","time":"2023-10-26T20:12:54.780+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-26T20:12:54.783+0800","caller":"controllers/community.go:40","msg":"strconv.ParseInt(communityIdstr, 10, 64) failed","error":"strconv.ParseInt: parsing \"hehe\": invalid syntax"}
+{"level":"ERROR","time":"2023-10-26T20:12:54.809+0800","caller":"mysql/community.go:40","msg":"query community detail failed","error":"sql: no rows in result set"}
+{"level":"ERROR","time":"2023-10-26T20:12:54.809+0800","caller":"controllers/community.go:47","msg":"logic.GetCommunityDetailById(communityId) failed","error":"sql: no rows in result set"}
+{"level":"INFO","time":"2023-10-26T20:12:54.809+0800","caller":"logger/logger.go:86","msg":"/community/hehe","status":400,"method":"GET","path":"/community/hehe","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.029534625}
+{"level":"DEBUG","time":"2023-10-26T20:13:08.216+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T20:13:08.239+0800","caller":"logger/logger.go:86","msg":"/community/4","status":200,"method":"GET","path":"/community/4","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.023400583}
+{"level":"DEBUG","time":"2023-10-26T20:13:12.463+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-26T20:13:12.482+0800","caller":"logger/logger.go:86","msg":"/community/7","status":200,"method":"GET","path":"/community/7","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.019862541}
+{"level":"DEBUG","time":"2023-10-27T00:08:03.697+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-27T00:08:03.699+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.014913042}
+{"level":"DEBUG","time":"2023-10-27T00:08:15.817+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-27T00:08:15.818+0800","caller":"controllers/community.go:58","msg":"c.ShouldBindJSON(post) failed","error":"Key: 'Post.ID' Error:Field validation for 'ID' failed on the 'required' tag\nKey: 'Post.PostID' Error:Field validation for 'PostID' failed on the 'required' tag\nKey: 'Post.AuthorID' Error:Field validation for 'AuthorID' failed on the 'required' tag\nKey: 'Post.CommunityID' Error:Field validation for 'CommunityID' failed on the 'required' tag"}
+{"level":"INFO","time":"2023-10-27T00:08:15.818+0800","caller":"logger/logger.go:86","msg":"/community/4/post","status":400,"method":"POST","path":"/community/4/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.00091625}
+{"level":"DEBUG","time":"2023-10-27T00:10:00.984+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-27T00:10:00.986+0800","caller":"controllers/community.go:58","msg":"c.ShouldBindJSON(post) failed","error":"json: cannot unmarshal string into Go struct field Post.community_id of type int64"}
+{"level":"INFO","time":"2023-10-27T00:10:00.986+0800","caller":"logger/logger.go:86","msg":"/community/4/post","status":400,"method":"POST","path":"/community/4/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.002630166}
+{"level":"DEBUG","time":"2023-10-27T00:10:02.073+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2023-10-27T00:10:02.073+0800","caller":"controllers/community.go:58","msg":"c.ShouldBindJSON(post) failed","error":"json: cannot unmarshal string into Go struct field Post.community_id of type int64"}
+{"level":"INFO","time":"2023-10-27T00:10:02.073+0800","caller":"logger/logger.go:86","msg":"/community/4/post","status":400,"method":"POST","path":"/community/4/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.0003075}
+{"level":"DEBUG","time":"2023-10-27T00:10:28.303+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-27T00:10:28.327+0800","caller":"logger/logger.go:86","msg":"/community/4/post","status":200,"method":"POST","path":"/community/4/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.023743042}
+{"level":"DEBUG","time":"2023-10-27T16:42:22.567+0800","caller":"controllers/user.go:61","msg":"logic.Login() success"}
+{"level":"INFO","time":"2023-10-27T16:42:22.568+0800","caller":"logger/logger.go:86","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.015291583}
+{"level":"DEBUG","time":"2023-10-27T16:42:34.929+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-10-27T16:42:34.946+0800","caller":"logger/logger.go:86","msg":"/community/4/post/9303923848384512","status":200,"method":"GET","path":"/community/4/post/9303923848384512","query":"","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.017500875}

@@ -1,7 +1,7 @@
 app:
   name: "web app"
   mode: "dev"
-  port: 8080
+  port: 8081
   version: "1.0.0"
   starttime: "2023-10-01 00:00:00"
   machineid: 1
@@ -28,3 +28,6 @@ redis:
   db: 0
   password: ""
   poolsize: 100
+
+auth:
+  jwtexpire: 100

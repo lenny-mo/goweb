@@ -7,6 +7,8 @@ import (
 	"errors"
 	"go_web_app/dao/mysql"
 	"go_web_app/models"
+	"go_web_app/pkg"
+	_ "go_web_app/pkg"
 	"go_web_app/pkg/snowflake"
 )
 
@@ -40,21 +42,23 @@ func Signup(params *models.SignupParam) error {
 	return nil
 }
 
-func Login(params *models.LoginParam) error {
+// Login 登录逻辑 成功则返回两个token
+func Login(params *models.LoginParam) (string, string) {
 	// 1. 从数据库中查找用户的密码信息并且进行比对
 	user, err := mysql.GetUserByUsername(params.Username)
 	if err == sql.ErrNoRows {
-		return errors.New("用户不存在")
+		return "", ""
 	} else if err != nil {
-		return err
+		return "", ""
 	}
 
 	// 2. 比较数据库中的用户密码是否和用户输入的密码一致
 	if user.PassWord != encryptPassword(params.Password) {
-		return errors.New("用户登录密码错误")
+		return "", ""
 	}
 
-	return nil
+	// 3. 生成JWT
+	return pkg.GenerateToken(user.Username, user.UserID)
 }
 
 // encryptPassword 对密码进行加密

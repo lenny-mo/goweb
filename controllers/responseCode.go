@@ -8,6 +8,9 @@ const (
 	UserExistCode
 	UserNotExistCode
 	InvalidPasswordCode
+	InvalidTokenCode
+	NeedLoginCode
+	NeedAuthCode
 )
 
 var codeMsgMap = map[ResponseCode]string{
@@ -16,6 +19,9 @@ var codeMsgMap = map[ResponseCode]string{
 	UserExistCode:       "用户名已存在",
 	UserNotExistCode:    "用户名不存在",
 	InvalidPasswordCode: "用户名或密码错误",
+	InvalidTokenCode:    "无效的token",
+	NeedLoginCode:       "需要登录",
+	NeedAuthCode:        "需要认证",
 }
 
 func (r ResponseCode) GetMsg(code ResponseCode) string {

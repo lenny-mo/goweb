@@ -28,4 +28,18 @@ unique key `index_community_id` (`community_id`),
 unique key `index_community_name` (`community_name`)
 ) engine=InnoDB default charset=utf8mb4 collate=utf8mb4_general_ci;
 
-
+-- 创建一个post表
+drop table if exists `post`;
+create table `post` (
+    `id` bigint(20) unsigned not null auto_increment,
+    `post_id` bigint(20) unsigned not null,
+    `title` varchar(256) not null,
+    `content` tinytext not null,
+    `author_id` bigint(20) unsigned not null,
+    `community_id` bigint(20) unsigned not null,
+    `status` tinyint(4) not null default 0,
+    `create_at` timestamp not null default current_timestamp,
+    `update_at` timestamp not null default current_timestamp on update current_timestamp,
+primary key (`id`),
+unique key `index_post_id` (`post_id`)
+) engine =InnoDB default charset=utf8mb4 collate=utf8mb4_general_ci;

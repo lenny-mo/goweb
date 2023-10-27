@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"go_web_app/logic"
 	"go_web_app/models"
 	"net/http"
@@ -10,6 +11,12 @@ import (
 	"github.com/gin-gonic/gin"
 
 	_ "github.com/go-playground/validator/v10"
+)
+
+const (
+	ContextUserIDKey   = "userID"
+	ContextUsernameKey = "username"
+	ExpireTimeKey      = "expireTime"
 )
 
 func SignUpHandler(c *gin.Context) {
@@ -46,12 +53,30 @@ func LoginHandler(c *gin.Context) {
 	}
 
 	// 2. 业务处理: 判断用户输入的密码是否和数据库中的一致
-	err := logic.Login(params)
-	if err != nil {
-		zap.L().Error("logic.Login() failed", zap.Error(err))
+	accessToken, refreshToken := logic.Login(params)
+	if accessToken == "" || refreshToken == "" {
+		zap.L().Error("logic.Login() failed")
 		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
 	} else {
 		zap.L().Debug("logic.Login() success")
-		ReturnResponse(c, http.StatusOK, SuccessCode)
+		ReturnResponse(c, http.StatusOK, SuccessCode, accessToken)
 	}
+}
+
+func IndexHandler(c *gin.Context) {
+	// 1. 获取用户ID和用户名
+	username, _ := c.Get(ContextUsernameKey)
+	userid, _ := c.Get(ContextUserIDKey)
+	expiretime, _ := c.Get(ExpireTimeKey)
+
+	if userid != -1 && username != "" {
+		fmt.Println("username: ", username, "userid: ", userid)
+	}
+
+	ReturnResponse(c, http.StatusOK, SuccessCode, gin.H{
+		"username":      username,
+		"userid":        userid,
+		"expiretime":    expiretime,
+		"login message": "login success",
+	})
 }

@@ -7,6 +7,7 @@ import (
 	"go_web_app/dao/mysql"
 	"go_web_app/dao/redis"
 	"go_web_app/logger"
+	"go_web_app/pkg"
 	"go_web_app/pkg/snowflake"
 	"go_web_app/router"
 	"go_web_app/settings"
@@ -21,7 +22,7 @@ import (
 )
 
 func main() {
-
+	fmt.Println("使用air进行热加载!")
 	// 日志并不是立即被保存，而是暂时存放在内存中。
 	// 当内存中的日志量达到一定的量时，再将这些日志批量写入到磁盘中。
 	// 无论程序是正常结束还是异常退出，都会确保这些日志被保存到文件或其他存储位置。
@@ -70,6 +71,8 @@ func main() {
 		fmt.Println("Init snowflake failed, err: ", err)
 		panic(err)
 	}
+
+	pkg.Init()
 
 	// 设置服务器
 	server := &http.Server{

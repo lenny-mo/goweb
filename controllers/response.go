@@ -10,11 +10,11 @@ type Response struct {
 	Data    interface{}  `json:"data"`
 }
 
-func ReturnResponse(c *gin.Context, httpStatus int, code ResponseCode) {
+func ReturnResponse(c *gin.Context, httpStatus int, code ResponseCode, data ...interface{}) {
 	r := Response{
 		Code:    code,
 		Message: code.GetMsg(code),
-		Data:    nil,
+		Data:    data,
 	}
 
 	c.JSON(httpStatus, r)
