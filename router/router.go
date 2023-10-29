@@ -32,13 +32,17 @@ func Init() (*gin.Engine, error) {
 	communityGroup := router.Group("/community")
 	communityGroup.Use(middleware.JWT()) // 这个组下面的接口都需要经过jwt验证
 	{
+		// 获取社区的所有分类
 		communityGroup.GET("/list", controllers.CommunityListHandler)
-		// 动态路由
+		// 动态路由，通过社区id获取社区详情
 		communityGroup.GET("/:id", controllers.CommunityDetailHandler)
-		// 创建post 业务路由
-		communityGroup.POST("/:id/post", controllers.CreatePostHandler)
-		// 路径参数, 当获通过帖子的id和community id 访问帖子详情时
+		// 业务路由，在指定的社区下创建post
+		communityGroup.POST("/:id/createpost", controllers.CreatePostHandler)
+		// 业务路由, 通过帖子的id和community id 访问帖子详情时
 		communityGroup.GET("/:id/post/:post_id", controllers.GetPostDetailHandler)
+		// 获取帖子列表
+		communityGroup.GET("/:id/postlist", controllers.GetPostListHandler)
+
 	}
 
 	return router, nil

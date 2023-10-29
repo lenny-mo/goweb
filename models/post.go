@@ -13,3 +13,9 @@ type Post struct {
 	CreateAt    time.Time `db:"create_at" json:"create_at"`
 	UpdateAt    time.Time `db:"update_at" json:"update_at"`
 }
+
+type APIPostDetail struct {
+	AuthorName    string        `json:"author_name"`
+	CommunityName string        `json:"community_name"`
+	*Post         `json:"Post"` // 嵌套匿名结构体
+}

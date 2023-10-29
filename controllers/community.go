@@ -10,8 +10,8 @@ import (
 	"go.uber.org/zap"
 )
 
+// CommunityListHandler 获取社区的所有分类
 func CommunityListHandler(c *gin.Context) {
-	// 1. 获取参数
 	// 查询所有社区的信息
 
 	// 2. 业务逻辑：查询所有社区的信息
@@ -107,5 +107,33 @@ func GetPostDetailHandler(c *gin.Context) {
 		return
 	}
 	// 3. 返回响应
+	ReturnResponse(c, http.StatusOK, SuccessCode, data)
+}
+
+// GetPostListHandler 获取社区下的帖子列表
+func GetPostListHandler(c *gin.Context) {
+	// 获取社区的id, 从url 中获取，查询所有的帖子，要求community id= 指定的id
+	communityIdStr := c.Param("id")
+	if len(communityIdStr) == 0 {
+		zap.L().Error("invalid community id", zap.String("communityIdStr", communityIdStr))
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		return
+	}
+	// 转化成int64
+	communityId, err := strconv.ParseInt(communityIdStr, 10, 64)
+	if err != nil {
+		zap.L().Error("strconv.ParseInt(communityIdStr, 10, 64) failed", zap.Error(err))
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		return
+	}
+
+	// 2. 业务逻辑处理: 通过community id 查询帖子列表
+	data, err := logic.GetPostListByCommunityId(communityId)
+	if err != nil {
+		zap.L().Error("logic.GetPostListByCommunityId(communityId) failed", zap.Int64("communityId", communityId), zap.Error(err))
+		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
+		return
+	}
+
 	ReturnResponse(c, http.StatusOK, SuccessCode, data)
 }

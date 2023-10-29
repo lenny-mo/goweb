@@ -80,14 +80,74 @@ func CreatePost(post *models.Post) error {
 	return nil
 }
 
-func GetPostDetailById(postId int64) (data *models.Post, err error) {
+// GetPostDetailById 通过post id 查询帖子详情, 取中包含作者名字和社区名字
+func GetPostDetailById(postId int64) (data *models.APIPostDetail, err error) {
 	// 1. 查询帖子详情
-	data = new(models.Post)
+	data = new(models.APIPostDetail)
+	postData := new(models.Post)
 	sqlstr := `select title, content, author_id, community_id, create_at, update_at from post where post_id = ?`
-	err = sqlxdb.Get(data, sqlstr, postId)
+	err = sqlxdb.Get(postData, sqlstr, postId)
 	if err != nil {
 		zap.L().Error("sqlxdb.Get(data, sqlstr, postId) failed", zap.Error(err))
 		return nil, err
 	}
+	data.Post = postData
+
+	// 2. 根据作者id 查询作者信息
+	userData := new(models.User)
+	sqlstr = `select name, email, gender from user where user_id = ?`
+	err = sqlxdb.Get(userData, sqlstr, postData.AuthorID)
+	if err != nil {
+		zap.L().Error("sqlxdb.Get(userData, sqlstr, postData.AuthorID) failed", zap.Int64("authorId", postData.AuthorID), zap.Error(err))
+		return nil, err
+	}
+	data.AuthorName = userData.Username
+	// 3. 根据社区id 查询社区信息
+	communityData := new(models.Community)
+	sqlstr = `select community_name, community_intro from community where community_id = ?`
+	err = sqlxdb.Get(communityData, sqlstr, postData.CommunityID)
+	if err != nil {
+		zap.L().Error("sqlxdb.Get(communityData, sqlstr, postData.CommunityID) failed", zap.Int64("communityId", postData.CommunityID), zap.Error(err))
+		return nil, err
+	}
+	data.CommunityName = communityData.Name
 	return
+}
+
+// GetPostListByCommunityId 通过社区id 查询帖子列表
+func GetPostListById(id int64) ([]*models.APIPostDetail, error) {
+	postlist := []*models.Post{}
+	sqlstr := "select post_id, title, content, author_id, community_id, create_at, update_at from post where community_id = ? limit 10"
+	err := sqlxdb.Select(&postlist, sqlstr, id)
+	if err != nil {
+		zap.L().Error("sqlxdb.Select(&postlist, sqlstr, id) failed", zap.Error(err))
+		return nil, err
+	}
+
+	// 遍历postlist，查询每个帖子对应的作者信息和社区信息
+	apiPostList := make([]*models.APIPostDetail, len(postlist), 10)
+	for i := range postlist {
+		// 查询作者信息
+		userData := new(models.User)
+		usersql := "select name from user where user_id = ?"
+		err = sqlxdb.Get(userData, usersql, postlist[i].AuthorID)
+		if err != nil {
+			zap.L().Error("sqlxdb.Get(userData, usersql, postlist[i].AuthorID) failed", zap.Error(err))
+		}
+		// 查询社区信息
+		communityData := new(models.Community)
+		communitysql := "select community_name from community where community_id = ?"
+		err = sqlxdb.Get(communityData, communitysql, postlist[i].CommunityID)
+		if err != nil {
+			zap.L().Error("sqlxdb.Get(communityData, communitysql, postlist[i].CommunityID) failed", zap.Error(err))
+		}
+		// 把作者信息和社区信息和postlist 组合到一起
+		apiPostList[i] = &models.APIPostDetail{
+			AuthorName:    userData.Username,
+			CommunityName: communityData.Name,
+			Post:          postlist[i],
+		}
+	}
+
+	return apiPostList, err
 }

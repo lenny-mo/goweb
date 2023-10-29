@@ -39,12 +39,23 @@ func CreatePost(post *models.Post) (err error) {
 	return
 }
 
-func GetPostDetailById(postId int64) (data *models.Post, err error) {
+func GetPostDetailById(postId int64) (data *models.APIPostDetail, err error) {
 	// 1. 查询帖子详情
 	data, err = mysql.GetPostDetailById(postId)
 	if err != nil {
 		zap.L().Error("mysql.GetPostDetailById(postId) failed", zap.Error(err))
 		return nil, err
 	}
+	return
+}
+
+func GetPostListByCommunityId(id int64) (postlist []*models.APIPostDetail, err error) {
+	// 1. 查询帖子列表, 这时候的post信息里面没有作者名字和社区名字
+	postlist, err = mysql.GetPostListById(id)
+	if err != nil {
+		zap.L().Error("mysql.GetPostDetailById(id) failed", zap.Error(err))
+		return nil, err
+	}
+
 	return
 }
