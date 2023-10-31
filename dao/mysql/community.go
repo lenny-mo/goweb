@@ -125,7 +125,9 @@ func GetPostListById(id, offset, limit int64) ([]*models.APIPostDetail, error) {
 		"community_id, " +
 		"create_at, " +
 		"update_at " +
-		"from post where community_id = ? limit ?, ?"
+		"from post where community_id = ? " +
+		"order by create_at desc" +
+		"limit ?, ?"
 	err := sqlxdb.Select(&postlist, sqlstr, id, offset, limit) // 跳过前面offset 条数据，取limit 条数据
 
 	if err != nil {
