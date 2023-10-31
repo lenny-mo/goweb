@@ -3,6 +3,7 @@ package controllers
 import (
 	"go_web_app/logic"
 	"go_web_app/models"
+	"go_web_app/pkg/snowflake"
 	"net/http"
 	"strconv"
 
@@ -67,7 +68,8 @@ func CreatePostHandler(c *gin.Context) {
 		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
 		return
 	}
-	post.PostID = id.(int64)
+	post.PostID = snowflake.GetId()
+	post.AuthorID = id.(int64)
 
 	// 2. 业务逻辑处理 创建帖子
 	err := logic.CreatePost(post)
@@ -112,6 +114,23 @@ func GetPostDetailHandler(c *gin.Context) {
 
 // GetPostListHandler 获取社区下的帖子列表
 func GetPostListHandler(c *gin.Context) {
+
+	offsetStr := c.Query("offset")
+	limitStr := c.Query("limit")
+	if len(offsetStr) == 0 || len(limitStr) == 0 {
+		zap.L().Error("invalid offset or limit")
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		return
+	}
+	offset, err1 := strconv.ParseInt(offsetStr, 10, 64)
+	limit, err2 := strconv.ParseInt(limitStr, 10, 64)
+	if err1 != nil || err2 != nil {
+		zap.L().Error("strconv.ParseInt(offsetStr, 10, 64) failed", zap.Error(err1))
+		zap.L().Error("strconv.ParseInt(limitStr, 10, 64) failed", zap.Error(err2))
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		return
+	}
+
 	// 获取社区的id, 从url 中获取，查询所有的帖子，要求community id= 指定的id
 	communityIdStr := c.Param("id")
 	if len(communityIdStr) == 0 {
@@ -128,7 +147,7 @@ func GetPostListHandler(c *gin.Context) {
 	}
 
 	// 2. 业务逻辑处理: 通过community id 查询帖子列表
-	data, err := logic.GetPostListByCommunityId(communityId)
+	data, err := logic.GetPostListByCommunityId(communityId, offset, limit)
 	if err != nil {
 		zap.L().Error("logic.GetPostListByCommunityId(communityId) failed", zap.Int64("communityId", communityId), zap.Error(err))
 		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)

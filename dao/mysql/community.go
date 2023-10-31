@@ -115,10 +115,19 @@ func GetPostDetailById(postId int64) (data *models.APIPostDetail, err error) {
 }
 
 // GetPostListByCommunityId 通过社区id 查询帖子列表
-func GetPostListById(id int64) ([]*models.APIPostDetail, error) {
+func GetPostListById(id, offset, limit int64) ([]*models.APIPostDetail, error) {
 	postlist := []*models.Post{}
-	sqlstr := "select post_id, title, content, author_id, community_id, create_at, update_at from post where community_id = ? limit 10"
-	err := sqlxdb.Select(&postlist, sqlstr, id)
+	sqlstr := "select " +
+		"post_id, " +
+		"title, " +
+		"content, " +
+		"author_id, " +
+		"community_id, " +
+		"create_at, " +
+		"update_at " +
+		"from post where community_id = ? limit ?, ?"
+	err := sqlxdb.Select(&postlist, sqlstr, id, offset, limit) // 跳过前面offset 条数据，取limit 条数据
+
 	if err != nil {
 		zap.L().Error("sqlxdb.Select(&postlist, sqlstr, id) failed", zap.Error(err))
 		return nil, err

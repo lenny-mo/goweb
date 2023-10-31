@@ -2,6 +2,7 @@ package logic
 
 import (
 	"go_web_app/dao/mysql"
+	"go_web_app/dao/redis"
 	"go_web_app/models"
 	"go_web_app/pkg/snowflake"
 
@@ -32,9 +33,21 @@ func GetCommunityDetailById(id int64) (data any, err error) {
 func CreatePost(post *models.Post) (err error) {
 	// 1. 创建帖子
 	post.PostID = snowflake.GetId() // 生成post_id
+	// 插入mysql
 	err = mysql.CreatePost(post)
 	if err != nil {
 		return err
+	}
+	// 获取帖子创建的时间，插入到redis中
+	postdata, err := mysql.GetPostDetailById(post.PostID)
+	if err != nil {
+		zap.L().Error("GetPostDetailById(post.PostID) failed", zap.Error(err))
+		return
+	}
+	err = redis.CreatePost(postdata)
+	if err != nil {
+		zap.L().Error("redis.CreatePost(postdata) failed", zap.Error(err))
+		return
 	}
 	return
 }
@@ -49,9 +62,9 @@ func GetPostDetailById(postId int64) (data *models.APIPostDetail, err error) {
 	return
 }
 
-func GetPostListByCommunityId(id int64) (postlist []*models.APIPostDetail, err error) {
+func GetPostListByCommunityId(id, offset, limit int64) (postlist []*models.APIPostDetail, err error) {
 	// 1. 查询帖子列表, 这时候的post信息里面没有作者名字和社区名字
-	postlist, err = mysql.GetPostListById(id)
+	postlist, err = mysql.GetPostListById(id, offset, limit)
 	if err != nil {
 		zap.L().Error("mysql.GetPostDetailById(id) failed", zap.Error(err))
 		return nil, err

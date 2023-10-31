@@ -42,7 +42,8 @@ func Init() (*gin.Engine, error) {
 		communityGroup.GET("/:id/post/:post_id", controllers.GetPostDetailHandler)
 		// 获取帖子列表
 		communityGroup.GET("/:id/postlist", controllers.GetPostListHandler)
-
+		// 给帖子投票
+		communityGroup.POST("/:id/post/vote", controllers.PostVoteHandler)
 	}
 
 	return router, nil

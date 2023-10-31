@@ -59,7 +59,7 @@ func LoginHandler(c *gin.Context) {
 		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
 	} else {
 		zap.L().Debug("logic.Login() success")
-		ReturnResponse(c, http.StatusOK, SuccessCode, accessToken)
+		ReturnResponse(c, http.StatusOK, SuccessCode, accessToken, refreshToken)
 	}
 }
 

@@ -7,10 +7,10 @@ import (
 	"github.com/go-redis/redis"
 )
 
-var rdb *redis.Client
+var redisClient *redis.Client
 
 func Init(conf *settings.RedisConfig) (err error) {
-	rdb = redis.NewClient(&redis.Options{
+	redisClient = redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprintf("%s:%d", conf.Host, conf.Port),
 		Password: conf.Password,
 		DB:       conf.DB,
@@ -20,7 +20,7 @@ func Init(conf *settings.RedisConfig) (err error) {
 		//PoolSize: viper.GetInt("redis.poolsize"),
 	})
 
-	_, err = rdb.Ping().Result()
+	_, err = redisClient.Ping().Result()
 	if err != nil {
 		fmt.Printf("connect redis failed, err:%v\n", err)
 		return
@@ -30,5 +30,5 @@ func Init(conf *settings.RedisConfig) (err error) {
 }
 
 func Close() {
-	rdb.Close()
+	redisClient.Close()
 }
