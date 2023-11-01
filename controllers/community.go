@@ -114,7 +114,7 @@ func GetPostDetailHandler(c *gin.Context) {
 
 // GetPostListHandler 获取社区下的帖子列表
 func GetPostListHandler(c *gin.Context) {
-
+	// query 从url 的?后面获取参数
 	offsetStr := c.Query("offset")
 	limitStr := c.Query("limit")
 	if len(offsetStr) == 0 || len(limitStr) == 0 {
@@ -131,7 +131,7 @@ func GetPostListHandler(c *gin.Context) {
 		return
 	}
 
-	// 获取社区的id, 从url 中获取，查询所有的帖子，要求community id= 指定的id
+	// 获取社区的id, 从动态路由中获取，查询所有的帖子，要求community id= 指定的id
 	communityIdStr := c.Param("id")
 	if len(communityIdStr) == 0 {
 		zap.L().Error("invalid community id", zap.String("communityIdStr", communityIdStr))

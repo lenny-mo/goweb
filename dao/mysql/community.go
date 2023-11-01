@@ -136,7 +136,14 @@ func GetPostListById(id, offset, limit int64) ([]*models.APIPostDetail, error) {
 	}
 
 	// 遍历postlist，查询每个帖子对应的作者信息和社区信息
-	apiPostList := make([]*models.APIPostDetail, len(postlist), 10)
+	apiPostList, err := AddAuthorandCommunityName(postlist)
+
+	return apiPostList, err
+}
+
+func AddAuthorandCommunityName(postlist []*models.Post) (apiPostList []*models.APIPostDetail, err error) {
+	// 遍历postlist，查询每个帖子对应的作者信息和社区信息
+	apiPostList = make([]*models.APIPostDetail, len(postlist), len(postlist))
 	for i := range postlist {
 		// 查询作者信息
 		userData := new(models.User)
@@ -160,5 +167,5 @@ func GetPostListById(id, offset, limit int64) ([]*models.APIPostDetail, error) {
 		}
 	}
 
-	return apiPostList, err
+	return
 }

@@ -186,3 +186,106 @@ func CreatePost(post *models.APIPostDetail) error {
 
 	return nil
 }
+
+// GetPostList 获取帖子列表, 根据排序列表进行排序
+func GetPostList(p *models.PostListParam) ([]string, error) {
+	//1. 从p获取offset和limit
+	start, end := p.Offset, p.Offset+p.Limit
+
+	//2. 从p 获取order顺序从而决定使用time 还是score, 涉及到zset的key 拼接
+	idlist, err := redisClient.ZRevRange(PostPrefix+p.Order, start, end).Result()
+
+	if err != nil {
+		zap.L().Error("redisClient.ZRevRange(PostPrefix+\":\"+p.Order, start, end).Result() failed", zap.Error(err))
+		return nil, err
+	}
+
+	return idlist, nil
+}
+
+// 返回每个帖子的投票总数，包括反对票和赞成票
+//
+// 根据postid 拼接查询zset3, key=post:voted:postid, 获取帖子的所有投票记录
+//
+// zset3 post:voted:postid 存储了这个帖子的所有投票记录
+func GetPostVoteData(idlist []string) ([]int64, error) {
+	//1. 开启pipeline，减少rtt
+	// TxPipeline 就是用于这个目的，它自动在底层处理 MULTI 和 EXEC
+	data := make([]int64, 0, len(idlist))
+	pipeline := redisClient.TxPipeline()
+	for i := range idlist {
+		// 统计赞同和反对票数
+		pipeline.ZCount(PostVotedPrefix+idlist[i], "-1", "1")
+	}
+	cmds, err := pipeline.Exec()
+	if err != nil {
+		zap.L().Error("pipeline.Exec() failed", zap.Error(err))
+		return nil, err
+	}
+
+	// 2. 遍历cmd并且断言intcmd, 存储了zcount的结果
+	for _, cmd := range cmds {
+		if value, ok := cmd.(*redis.IntCmd); ok {
+			data = append(data, value.Val())
+		} else {
+			zap.L().Error("pipeline.Exec() failed", zap.Error(err))
+			return nil, err
+		}
+	}
+
+	return data, nil
+}
+
+// GetPostAgreeVoteData 获取每个帖子的赞成票数
+//
+// 遍历idlist 获取每个帖子对应的zset key, post:voted:postid, 获取帖子的赞成票数
+func GetPostAgreeVoteData(idlist []string) ([]int64, error) {
+	// 1. 开启pipeline，减少rtt
+	data := make([]int64, 0, len(idlist))
+	pipeline := redisClient.TxPipeline()
+
+	// 2. 遍历所有的postid 获取对应的赞成票
+	for i := range idlist {
+		pipeline.ZCount(PostVotedPrefix+idlist[i], "1", "1").Val()
+	}
+	cmds, err := pipeline.Exec()
+
+	// 3. 遍历cmd并且断言intcmd
+	for _, cmd := range cmds {
+		if value, ok := cmd.(*redis.IntCmd); ok {
+			data = append(data, value.Val())
+		} else {
+			zap.L().Error("pipeline.Exec() failed", zap.Error(err))
+			return nil, err
+		}
+	}
+
+	return data, nil
+}
+
+// GetPostDisagreeVoteData 获取每个帖子的反对票数
+//
+// 遍历idlist 获取每个帖子对应的zset key, post:voted:postid, 获取帖子的反对票数
+func GetPostDisagreeVoteData(idlist []string) ([]int64, error) {
+	// 1. 开启pipeline，减少rtt
+	data := make([]int64, 0, len(idlist))
+	pipeline := redisClient.TxPipeline()
+
+	// 2. 遍历所有的postid 获取对应的反对票
+	for i := range idlist {
+		pipeline.ZCount(PostVotedPrefix+idlist[i], "-1", "-1").Val()
+	}
+	cmds, err := pipeline.Exec()
+
+	// 3. 遍历cmd并且断言intcmd
+	for _, cmd := range cmds {
+		if value, ok := cmd.(*redis.IntCmd); ok {
+			data = append(data, value.Val())
+		} else {
+			zap.L().Error("pipeline.Exec() failed", zap.Error(err))
+			return nil, err
+		}
+	}
+
+	return data, nil
+}

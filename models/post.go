@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type Post struct {
 	ID          int64     `db:"id" json:"id,string"`
@@ -17,5 +19,8 @@ type Post struct {
 type APIPostDetail struct {
 	AuthorName    string        `json:"author_name"`
 	CommunityName string        `json:"community_name"`
+	TotalVote     int64         `json:"total_vote"`
+	AgreeVote     int64         `json:"agree_vote"`
+	DisagreeVote  int64         `json:"disagree_vote"`
 	*Post         `json:"Post"` // 嵌套匿名结构体
 }
