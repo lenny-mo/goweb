@@ -38,7 +38,6 @@ func PostVoteHandler(c *gin.Context) {
 
 // SortedPostHandler 获取社区下的帖子列表, 并且根据时间或者投票分数进行排序
 func SortedPostHandler(c *gin.Context) {
-	// 1. 获取参数,post id 不需要community id 就可以访问post 详情
 	// get请求，从url 中获取参数
 	// 跳过offset前面的行数，从offset+1行开始取limit 行数据
 	querydata := new(models.PostListParam)

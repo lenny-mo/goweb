@@ -547,3 +547,13 @@
 {"level":"INFO","time":"2023-11-01T13:14:51.791+0800","caller":"logger/logger.go:86","msg":"/community/2/sortedpost","status":200,"method":"GET","path":"/community/2/sortedpost","query":"offset=2&limit=10&order=vote","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.035323042}
 {"level":"DEBUG","time":"2023-11-01T13:16:21.301+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
 {"level":"INFO","time":"2023-11-01T13:16:21.345+0800","caller":"logger/logger.go:86","msg":"/community/2/sortedpost","status":200,"method":"GET","path":"/community/2/sortedpost","query":"offset=0&limit=10&order=vote","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.044386625}
+{"level":"DEBUG","time":"2023-11-01T14:20:32.402+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-11-01T14:20:32.451+0800","caller":"logger/logger.go:86","msg":"/community/2/sortedpost","status":200,"method":"GET","path":"/community/2/sortedpost","query":"offset=0&limit=10&order=vote","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.050783542}
+{"level":"DEBUG","time":"2023-11-01T14:20:51.669+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-11-01T14:20:51.712+0800","caller":"logger/logger.go:86","msg":"/community/1/sortedpost","status":200,"method":"GET","path":"/community/1/sortedpost","query":"offset=0&limit=10&order=vote","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.042983208}
+{"level":"DEBUG","time":"2023-11-01T14:21:01.255+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-11-01T14:21:01.288+0800","caller":"logger/logger.go:86","msg":"/community/1/sortedpost","status":200,"method":"GET","path":"/community/1/sortedpost","query":"offset=0&limit=10&order=vote","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.033122916}
+{"level":"DEBUG","time":"2023-11-01T14:21:25.570+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-11-01T14:21:25.608+0800","caller":"logger/logger.go:86","msg":"/community/3/sortedpost","status":200,"method":"GET","path":"/community/3/sortedpost","query":"offset=0&limit=10&order=vote","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.038111917}
+{"level":"DEBUG","time":"2023-11-01T14:21:42.245+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2023-11-01T14:21:42.277+0800","caller":"logger/logger.go:86","msg":"/community/3/sortedpost","status":200,"method":"GET","path":"/community/3/sortedpost","query":"offset=0&limit=10&order=vote","ip":"::1","user-agent":"PostmanRuntime/7.34.0","errors":"","cost":0.032041167}

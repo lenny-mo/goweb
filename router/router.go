@@ -45,7 +45,7 @@ func Init() (*gin.Engine, error) {
 		// 给帖子投票
 		communityGroup.POST("/:id/post/vote", controllers.PostVoteHandler)
 		// 根据时间or 分数来对post list 进行排序
-		communityGroup.GET("/:id/sortedpost", controllers.SortedPostHandler)
+		communityGroup.GET("/sortedpost", controllers.SortedPostHandler)
 	}
 
 	return router, nil
