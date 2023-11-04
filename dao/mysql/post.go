@@ -34,7 +34,7 @@ func GetPostListByIds(idlist []string) ([]*models.APIPostDetail, error) {
 		return nil, err
 	}
 
-	// 3. 拼接数据
+	// 3. 拼接数据, 添加作者名字和社区名字
 	apiPostList, err := AddAuthorandCommunityName(postlist)
 	if err != nil {
 		return nil, err

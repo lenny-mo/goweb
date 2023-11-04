@@ -59,23 +59,27 @@ func GetCommunityDetailById(id int64) (communityDetail *models.Community, err er
 	return
 }
 
-func CreatePost(post *models.Post) error {
+func CreatePost(post *models.Post) (err error) {
 	// 开启事务
 	tx, err := sqlxdb.Beginx()
 	if err != nil {
 		zap.L().Error("begin transaction failed", zap.Error(err))
 		return err
 	}
+	defer func() { // 如果失败，回滚
+		if err != nil {
+			zap.L().Error("create post failed", zap.Error(err))
+			tx.Rollback()
+		}
+	}()
 
-	sqlstr := "insert into post(post_id, title, content, author_id, community_id) values(?, ?, ?, ?, ?)"
-	_, err = sqlxdb.Exec(sqlstr, post.PostID, post.Title, post.Content, post.AuthorID, post.CommunityID)
+	sqlstr := "insert into post(post_id, title, content, author_id, community_id, create_at, update_at) values(?, ?, ?, ?, ?, ?, ?)"
+	_, err = sqlxdb.Exec(sqlstr, post.PostID, post.Title, post.Content, post.AuthorID, post.CommunityID, post.CreateAt, post.UpdateAt)
 	if err != nil {
 		zap.L().Error("insert into post failed", zap.Error(err))
-		tx.Rollback()
 		return err
 	}
 
-	// 提交事务
 	tx.Commit()
 	return nil
 }

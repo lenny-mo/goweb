@@ -10,7 +10,6 @@ func InsertUser(user *models.User) error {
 
 	return err
 }
-
 func QueryUserByName(username string) bool {
 	sql := "select count(user_id) from user where name = ?"
 
