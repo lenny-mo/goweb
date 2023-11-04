@@ -165,24 +165,27 @@ func VoteForPost(v *models.VoteData, userid int64) error {
 }
 
 // CreatePost 将帖子创建时间插入到redis中
-func CreatePost(post *models.APIPostDetail) error {
+func CreatePost(post *models.Post) error {
 	pipeline := redisClient.TxPipeline()
 
-	// 1. 将帖子创建时间插入到redis的posttimezset中
-	pipeline.ZAdd(PostTimeZSetKey, redis.Z{Score: float64(post.Post.CreateAt.Unix()), Member: strconv.FormatInt(post.Post.PostID, 10)})
+	// 1. 将帖子创建时间插入到redis的post:time zset中
+	pipeline.ZAdd(PostTimeZSetKey, redis.Z{Score: float64(post.CreateAt.Unix()), Member: strconv.FormatInt(post.PostID, 10)})
 
-	// 2. 使用当前时间作为帖子的初始score
-	pipeline.ZAdd(PostVoteZSetKey, redis.Z{Score: float64(post.Post.CreateAt.Unix()), Member: strconv.FormatInt(post.Post.PostID, 10)})
+	// 2. 使用当前时间作为帖子的初始score插入到post:score zset中
+	pipeline.ZAdd(PostVoteZSetKey, redis.Z{Score: float64(post.CreateAt.Unix()), Member: strconv.FormatInt(post.PostID, 10)})
 
-	_, err := pipeline.Exec()
+	// 3. 根据帖子的社区id，将帖子id插入到社区对应的set中
+	pipeline.SAdd(CommunityPrefix+strconv.FormatInt(post.CommunityID, 10), strconv.FormatInt(post.PostID, 10))
+
+	cmd, err := pipeline.Exec()
+
 	if err != nil {
 		zap.L().Error("pipeline.Exec() failed", zap.Error(err))
 		return err
 	}
+	fmt.Println(cmd)
 	fmt.Println("创建post并且更新redis")
-	zap.L().Info("CreatePost success", zap.Int64("post_id", post.Post.PostID))
-
-	// todo: 尝试从redis中取出刚刚存储的值
+	zap.L().Info("CreatePost success", zap.Int64("post_id", post.PostID))
 
 	return nil
 }
@@ -288,4 +291,22 @@ func GetPostDisagreeVoteData(idlist []string) ([]int64, error) {
 	}
 
 	return data, nil
+}
+
+func GetCommunitySortedPostIds(key string, p *models.PostListParam) ([]string, error) {
+	// 1. 拼接key
+	desKey := key + ":" + PostPrefix + p.Order
+	// 2. 判断这个zset是否存在，如果不存在则和p.order 做交集，产生一个新的zset
+	// 如果这个集合存在，则直接返回这个集合的所有元素
+	// 3. 查询redis，根据score返回这个zset的所有元素id
+
+	if cmd := redisClient.Exists(desKey); cmd.Val() == 0 {
+		pipeline := redisClient.TxPipeline()
+		pipeline.ZInterStore(desKey, redis.ZStore{Aggregate: "MAX"}, PostPrefix+p.Order, CommunityPrefix+key)
+		pipeline.Expire(desKey, 60*time.Second) // 设置交集的key的过期时间
+		pipeline.Exec()
+	}
+
+	// 根据offset和limit获取交集的key的所有元素
+	return redisClient.ZRevRange(desKey, p.Offset, p.Offset+p.Limit).Result()
 }

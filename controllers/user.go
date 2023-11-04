@@ -1,10 +1,12 @@
 package controllers
 
 import (
+	"context"
 	"fmt"
 	"go_web_app/logic"
 	"go_web_app/models"
 	"net/http"
+	"time"
 
 	"go.uber.org/zap"
 
@@ -36,15 +38,30 @@ func SignUpHandler(c *gin.Context) {
 	}
 	zap.L().Info("SignUp with param", zap.Any("param", *param)) // 记录结构体信息
 
-	// 2. 业务处理
-	err := logic.Signup(param)
-	if err != nil {
-		zap.L().Error("logic.Signup() failed", zap.Error(err))
-		// 3. 返回响应
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
-	} else {
-		zap.L().Debug("logic.Signup() success")
-		ReturnResponse(c, http.StatusOK, SuccessCode)
+	// 2. 业务处理，设置超时
+	ctx, cancel := context.WithTimeout(c.Request.Context(), 2*time.Second)
+	defer cancel()
+
+	res := make(chan error) // 定义业务逻辑使用的channel
+
+	go func() {
+		err := logic.Signup(param)
+		res <- err
+	}()
+
+	select {
+	case err := <-res: // 业务代码返回
+		if err != nil {
+			zap.L().Error("logic.Signup() failed", zap.Error(err))
+			// 3. 返回响应
+			ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		} else {
+			zap.L().Info("logic.Signup() success")
+			ReturnResponse(c, http.StatusOK, SuccessCode)
+		}
+	case <-ctx.Done(): // 如果超时
+		zap.L().Error("logic.Signup() timeout")
+		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
 	}
 }
 
