@@ -19,6 +19,12 @@ const (
 	ExpireTimeKey      = "expireTime"
 )
 
+// SignUpHandler SignupHandler 注册用户
+// @Summary 注册用户
+// @Tags 用户模块
+// @Produce json
+// @Param object body models.SignupParam true "用户名和密码"
+// @Router /user/signup [post]
 func SignUpHandler(c *gin.Context) {
 	// 1. 获取参数和参数校验
 	param := new(models.SignupParam) // 定义一个结构体变量,内部是默认值
@@ -42,6 +48,12 @@ func SignUpHandler(c *gin.Context) {
 	}
 }
 
+// LoginHandler LoginHandler 注册用户
+// @Summary 登录用户
+// @T	ags 用户模块
+// @Produce json
+// @Param object body models.LoginParam true "用户名和密码"
+// @Router /user/login [post]
 func LoginHandler(c *gin.Context) {
 	// 1. 参数校验
 	params := new(models.LoginParam)

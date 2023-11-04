@@ -12,6 +12,15 @@ import (
 )
 
 // CommunityListHandler 获取社区的所有分类
+// PingExample godoc
+// @Summary ping example
+// @Schemes
+// @Description do ping
+// @Tags example
+// @Accept json
+// @Produce json
+// @Success 200 {string} Helloworld
+// @Router /example/helloworld [get]
 func CommunityListHandler(c *gin.Context) {
 	// 查询所有社区的信息
 
@@ -155,4 +164,36 @@ func GetPostListHandler(c *gin.Context) {
 	}
 
 	ReturnResponse(c, http.StatusOK, SuccessCode, data)
+}
+
+func CommunitySortedPostHandler(c *gin.Context) {
+	// 1. 获取社区id, 动态路由
+	communityID := c.Param("id")
+	if len(communityID) == 0 {
+		zap.L().Error("invalid community id")
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		return
+	}
+
+	// 2. 获取query string 参数
+	querydata := new(models.PostListParam)
+	if err := c.ShouldBind(querydata); err != nil {
+		zap.L().Error("c.ShouldBindJSON(querydata) failed", zap.Error(err))
+		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		return
+	}
+
+	// 3. 业务逻辑处理: 传递社区id, orderstr, offset, limit
+	// 创建一个根据社区id和order有交集的key，产生一个新的zset
+	// 根据score返回这新的zset的所有元素
+	data, err := logic.CommunitySortedPost(communityID, querydata)
+	if err != nil {
+		zap.L().Error("logic.CommunitySortedPost(communityID, querydata) failed", zap.Error(err))
+		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
+		return
+	}
+
+	zap.L().Info("logic.CommunitySortedPost(communityID, querydata) success", zap.Any("data", data))
+	ReturnResponse(c, http.StatusOK, SuccessCode, data)
+	return
 }

@@ -12,6 +12,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// PostVoteHandler 投票功能
 func PostVoteHandler(c *gin.Context) {
 	// 参数校验
 	votedata := new(models.VoteData)
