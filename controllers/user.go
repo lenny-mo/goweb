@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"go_web_app/logic"
 	"go_web_app/models"
@@ -81,14 +82,33 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 
-	// 2. 业务处理: 判断用户输入的密码是否和数据库中的一致
-	accessToken, refreshToken := logic.Login(params)
-	if accessToken == "" || refreshToken == "" {
-		zap.L().Error("logic.Login() failed")
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
-	} else {
-		zap.L().Debug("logic.Login() success")
-		ReturnResponse(c, http.StatusOK, SuccessCode, accessToken, refreshToken)
+	ctx, cancel := context.WithTimeout(c.Request.Context(), 2*time.Second)
+	defer cancel()
+
+	res := make(chan error)
+	var accessToken, refreshToken string
+	go func() {
+		// 2. 业务处理: 判断用户输入的密码是否和数据库中的一致
+		accessToken, refreshToken = logic.Login(params)
+		if accessToken == "" || refreshToken == "" {
+			res <- errors.New("logic.Login() failed, accessToken or refreshToken is empty")
+		} else {
+			res <- nil
+		}
+	}()
+
+	select {
+	case err := <-res:
+		if err != nil {
+			zap.L().Error("logic.Login() failed")
+			ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		} else {
+			zap.L().Debug("logic.Login() success")
+			ReturnResponse(c, http.StatusOK, SuccessCode, accessToken, refreshToken)
+		}
+	case <-ctx.Done():
+		zap.L().Error("logic.Login() timeout")
+		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
 	}
 }
 
