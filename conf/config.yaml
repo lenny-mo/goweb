@@ -14,8 +14,8 @@ log:
   maxage: 30
 
 mysql:
-  host: "127.0.0.1"
-  port: 3307
+  host: mysql3308
+  port: 3306
   user: "root"
   password: "123456"
   dbname: "test"
@@ -23,7 +23,7 @@ mysql:
   maxopen: 10
 
 redis:
-  host: "127.0.0.1"
+  host: redis6380
   port: 6379
   db: 0
   password: ""
