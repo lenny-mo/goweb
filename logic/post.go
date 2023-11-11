@@ -5,6 +5,7 @@ import (
 	"go_web_app/dao/redis"
 	"go_web_app/models"
 	"go_web_app/pkg/snowflake"
+	"time"
 
 	"go.uber.org/zap"
 )
@@ -12,18 +13,16 @@ import (
 func CreatePost(post *models.Post) (err error) {
 	// 1. 创建帖子
 	post.PostID = snowflake.GetId() // 生成post_id
-	// 插入mysql
+	// 2. 添加时间
+	post.CreateAt, post.UpdateAt = time.Now(), time.Now()
+	// 3. 插入mysql
 	err = mysql.CreatePost(post)
 	if err != nil {
 		return err
 	}
-	// 获取帖子创建的时间，插入到redis中
-	postdata, err := mysql.GetPostDetailById(post.PostID)
-	if err != nil {
-		zap.L().Error("GetPostDetailById(post.PostID) failed", zap.Error(err))
-		return
-	}
-	err = redis.CreatePost(postdata)
+
+	// 4. 把帖子的数据插入到redis
+	err = redis.CreatePost(post)
 	if err != nil {
 		zap.L().Error("redis.CreatePost(postdata) failed", zap.Error(err))
 		return
@@ -81,12 +80,20 @@ func GetSortedPost(p *models.PostListParam) ([]*models.APIPostDetail, error) {
 	}
 
 	// 2. 查询redis 获取到 post对应的投票总数，赞成票数，反对票数, 格式使用slice
-	totalVote, err := redis.GetPostVoteData(ids)
-	agreeVote, err := redis.GetPostAgreeVoteData(ids)
-	disagreeVote, err := redis.GetPostDisagreeVoteData(ids)
+	totalVote, err1 := redis.GetPostVoteData(ids)
+	agreeVote, err2 := redis.GetPostAgreeVoteData(ids)
+	disagreeVote, err3 := redis.GetPostDisagreeVoteData(ids)
 
-	if err != nil {
+	if err1 != nil {
 		zap.L().Error("GetPostVoteData(idlist) failed", zap.Error(err))
+		return nil, err
+	}
+	if err2 != nil {
+		zap.L().Error("GetPostAgreeVoteData(idlist) failed", zap.Error(err))
+		return nil, err
+	}
+	if err3 != nil {
+		zap.L().Error("GetPostDisagreeVoteData(idlist) failed", zap.Error(err))
 		return nil, err
 	}
 
