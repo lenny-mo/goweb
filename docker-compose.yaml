@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  mysql3308:
+    image: "mysql:latest"
+    ports:
+      - "3308:3306"
+    command: "--default-authentication-plugin=mysql_native_password --init-file /data/application/mysql_init.sql"
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_DATABASE: "test"
+    volumes:
+      - ./mysql_init.sql:/data/application/mysql_init.sql #把当前的目录下的mysql_init.sql文件挂载到容器的/data/application/mysql_init.sql
+  redis6380:
+    image: "redis:7.2-rc2-bullseye"
+    ports:
+      - "6380:6379"
+  go_web_app:
+    build: .  #根据当前目录下的Dockerfile文件构建镜像
+    command: sh -c "./wait-for.sh mysql3308:3306 redis6380:6379 -- ./go_web_app -c ./conf/config.yaml" #会覆盖dockerfile中的entrypoint命令
+    ports:
+      - "8084:8081" #外部使用8084端口访问容器的8081端口
+    depends_on:
+      - mysql3308
+      - redis6380

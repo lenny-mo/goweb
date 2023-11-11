@@ -1,5 +1,4 @@
 .PHONY: all build run gotool clean help
-
 BINARY="go_web_app"
 
 all: gotool build
