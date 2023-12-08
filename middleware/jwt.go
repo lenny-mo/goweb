@@ -16,7 +16,7 @@ func JWT() func(c *gin.Context) {
 		if token == "" {
 			// 没有携带token
 			controllers.ReturnResponse(c, http.StatusUnauthorized, controllers.NeedAuthCode)
-			c.Abort()
+			c.Abort() // 终止中间件函数后续的调用
 			return
 		}
 		// 2. 按空格分割

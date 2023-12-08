@@ -1,0 +1,79 @@
+definitions:
+  models.LoginParam:
+    properties:
+      password:
+        type: string
+      username:
+        description: binding:"required"表示必须要传
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.SignupParam:
+    properties:
+      email:
+        type: string
+      gender:
+        type: integer
+      password:
+        type: string
+      username:
+        description: binding:"required"表示必须要传，gin的validator使用
+        type: string
+    required:
+    - email
+    - gender
+    - password
+    - username
+    type: object
+info:
+  contact: {}
+  description: go_web_app项目接口文档server端api文档
+  title: go_web_app项目接口文档
+  version: latest
+paths:
+  /example/helloworld:
+    get:
+      consumes:
+      - application/json
+      description: do ping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - example
+  /user/login:
+    post:
+      parameters:
+      - description: 用户名和密码
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginParam'
+      produces:
+      - application/json
+      responses: {}
+      summary: 登录用户
+  /user/signup:
+    post:
+      parameters:
+      - description: 用户名和密码
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/models.SignupParam'
+      produces:
+      - application/json
+      responses: {}
+      summary: 注册用户
+      tags:
+      - 用户模块
+swagger: "2.0"

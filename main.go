@@ -14,15 +14,22 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"runtime/debug"
 	"syscall"
 	"time"
 
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
+
+	_ "go_web_app/docs"
 )
 
+// @title go_web_app项目接口文档
+// @version latest
+// @description go_web_app项目接口文档server端api文档
 func main() {
 	fmt.Println("使用air进行热加载!")
+
 	// 日志并不是立即被保存，而是暂时存放在内存中。
 	// 当内存中的日志量达到一定的量时，再将这些日志批量写入到磁盘中。
 	// 无论程序是正常结束还是异常退出，都会确保这些日志被保存到文件或其他存储位置。
@@ -46,8 +53,21 @@ func main() {
 	}
 
 	// 3. mysql数据库初始化
+	fmt.Println("mysql数据库初始化")
+	for i := 0; i < 10; i++ {
+		err := mysql.Init(settings.Config.MySQLConfig)
+		if err != nil {
+			// 睡眠2秒
+			time.Sleep(2 * time.Second)
+			continue
+		} else {
+			break
+		}
+	}
 	if err := mysql.Init(settings.Config.MySQLConfig); err != nil {
 		fmt.Println("Init mysql failed, err: ", err)
+		// 打印调用栈信息
+		fmt.Println("Stacktrace from panic: \n" + string(debug.Stack()))
 		panic(err)
 	}
 	defer mysql.Close()
