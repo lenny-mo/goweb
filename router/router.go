@@ -30,8 +30,7 @@ func Init() (*gin.Engine, error) {
 
 	// 注册业务路由组, user
 	userGroup := router.Group("/user")
-	userGroup.Use(middleware.RateLimit()) // 这个组下面的接口都需要经过限流
-
+	userGroup.Use(middleware.RateLimit("user", 10000)) // 这个组下面的接口都需要经过限流
 	{
 		userGroup.POST("/signup", controllers.SignUpHandler)
 		userGroup.POST("/login", controllers.LoginHandler)
@@ -42,7 +41,7 @@ func Init() (*gin.Engine, error) {
 	// 给前端暴露获取community 分类的接口
 	communityGroup := router.Group("/community")
 	communityGroup.Use(middleware.JWT()) // 这个组下面的接口都需要经过jwt验证
-	communityGroup.Use(middleware.RateLimit())
+	communityGroup.Use(middleware.RateLimit("community", 200))
 	{
 		// 获取社区的所有分类
 		communityGroup.GET("/list", controllers.CommunityListHandler)

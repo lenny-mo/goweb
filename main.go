@@ -54,16 +54,6 @@ func main() {
 
 	// 3. mysql数据库初始化
 	fmt.Println("mysql数据库初始化")
-	for i := 0; i < 10; i++ {
-		err := mysql.Init(settings.Config.MySQLConfig)
-		if err != nil {
-			// 睡眠2秒
-			time.Sleep(2 * time.Second)
-			continue
-		} else {
-			break
-		}
-	}
 	if err := mysql.Init(settings.Config.MySQLConfig); err != nil {
 		fmt.Println("Init mysql failed, err: ", err)
 		// 打印调用栈信息
@@ -73,6 +63,7 @@ func main() {
 	defer mysql.Close()
 
 	// 4. redis数据库初始化
+	fmt.Println("redis初始化")
 	if err := redis.Init(settings.Config.RedisConfig); err != nil {
 		fmt.Println("Init redis failed, err: ", err)
 		panic(err)
@@ -101,6 +92,7 @@ func main() {
 	}
 
 	// 开启goroutine启动服务
+	fmt.Println("启动服务")
 	go func() {
 		if err := server.ListenAndServe(); err != nil {
 			fmt.Println("ListenAndServe failed, err: ", err)
