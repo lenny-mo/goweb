@@ -119,20 +119,37 @@ func GetPostDetailById(postId int64) (data *models.APIPostDetail, err error) {
 }
 
 // GetPostListByCommunityId 通过社区id 查询帖子列表
+// TODO: 深分页的优化
 func GetPostListById(id, offset, limit int64) ([]*models.APIPostDetail, error) {
 	postlist := []*models.Post{}
-	sqlstr := "select " +
-		"post_id, " +
-		"title, " +
-		"content, " +
-		"author_id, " +
-		"community_id, " +
-		"create_at, " +
-		"update_at " +
-		"from post where community_id = ? " +
-		"order by create_at desc" +
-		"limit ?, ?"
-	err := sqlxdb.Select(&postlist, sqlstr, id, offset, limit) // 跳过前面offset 条数据，取limit 条数据
+	// 使用子查询减少回表的次数，深度分页的最大问题就是每条数据都要回表，速度非常慢
+	sqlstr := `
+		SELECT 
+			post_id,
+			title,
+			content,
+			author_id,
+			community_id,
+			create_at,
+			update_at
+		FROM (
+			SELECT 
+				post_id,
+				title,
+				content,
+				author_id,
+				community_id,
+				create_at,
+				update_at,
+				-- 添加一个新字段 row_num 
+				ROW_NUMBER() OVER (ORDER BY create_at DESC) AS row_num	
+			FROM post
+			WHERE community_id = ?
+		) AS sub
+		WHERE row_num > ?
+		LIMIT ?
+	`
+	err := sqlxdb.Select(&postlist, sqlstr, id, offset, limit)
 
 	if err != nil {
 		zap.L().Error("sqlxdb.Select(&postlist, sqlstr, id) failed", zap.Error(err))
