@@ -3,7 +3,6 @@ package controllers
 import (
 	"go_web_app/logic"
 	"go_web_app/models"
-	"go_web_app/pkg/snowflake"
 	"net/http"
 	"strconv"
 
@@ -23,7 +22,6 @@ import (
 // @Router /example/helloworld [get]
 func CommunityListHandler(c *gin.Context) {
 	// 查询所有社区的信息
-
 	// 2. 业务逻辑：查询所有社区的信息
 	data, err := logic.GetCommunityList()
 	if err != nil {
@@ -71,13 +69,12 @@ func CreatePostHandler(c *gin.Context) {
 		return
 	}
 
-	id, ok := c.Get(ContextUserIDKey)
+	id, ok := c.Get(ContextUserIDKey) // 应该是JWT提供了信息
 	if !ok {
 		zap.L().Error("c.Get(ContextUserIDKey) failed")
 		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
 		return
 	}
-	post.PostID = snowflake.GetId()
 	post.AuthorID = id.(int64)
 
 	// 2. 业务逻辑处理 创建帖子

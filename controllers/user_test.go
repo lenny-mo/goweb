@@ -8,6 +8,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/smartystreets/goconvey/convey"
+
 	"github.com/stretchr/testify/assert"
 
 	"github.com/gin-gonic/gin"
@@ -44,4 +46,21 @@ func TestSignUpHandler(t *testing.T) {
 
 	// 判断响应码
 	assert.Equal(t, http.StatusOK, w.Code)
+}
+
+// 使用行为驱动BDD，嵌套的结构使得测试用例可以清晰地表达不同的测试场景和期望的结果
+func TestLoginHandler(t *testing.T) {
+	// 表示一个测试的开始，描述了测试的背景或初始条件。
+	convey.Convey("Given some integer with a starting value", t, func() {
+		x := 1
+		// 又开始了一个新的测试步骤，描述了整数被递增的情况。
+		convey.Convey("When the integer is incremented", func() {
+			x++
+
+			// 在第3个Convey语句的内部，描述了期望的测试结果。
+			convey.Convey("The value should be greater by one", func() {
+				convey.So(x, convey.ShouldEqual, 2)
+			})
+		})
+	})
 }

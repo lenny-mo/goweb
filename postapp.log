@@ -1,0 +1,84 @@
+{"level":"INFO","time":"2024-02-02T14:42:45.119+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"cpple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"INFO","time":"2024-02-02T15:05:43.041+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"cpple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"INFO","time":"2024-02-02T15:05:43.060+0800","caller":"controllers/user.go:60","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2024-02-02T15:05:43.061+0800","caller":"logger/logger.go:105","msg":"/user/signup","status":200,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.019878209}
+{"level":"INFO","time":"2024-02-02T15:09:41.790+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"cpple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"ERROR","time":"2024-02-02T15:09:41.815+0800","caller":"mysql/user.go:14","msg":"Error 1364 (HY000): Field 'create_at' doesn't have a default value"}
+{"level":"INFO","time":"2024-02-02T15:09:41.815+0800","caller":"controllers/user.go:60","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2024-02-02T15:09:41.815+0800","caller":"logger/logger.go:105","msg":"/user/signup","status":200,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.025797792}
+{"level":"INFO","time":"2024-02-02T15:11:04.008+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"cpple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"ERROR","time":"2024-02-02T15:11:04.014+0800","caller":"mysql/user.go:15","msg":"Error 1136 (21S01): Column count doesn't match value count at row 1"}
+{"level":"INFO","time":"2024-02-02T15:11:04.014+0800","caller":"controllers/user.go:60","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2024-02-02T15:11:04.015+0800","caller":"logger/logger.go:105","msg":"/user/signup","status":200,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.0069965}
+{"level":"INFO","time":"2024-02-02T15:12:12.901+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"cpple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"INFO","time":"2024-02-02T15:13:21.442+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"cpple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"ERROR","time":"2024-02-02T15:13:21.447+0800","caller":"controllers/user.go:56","msg":"logic.Signup() failed","error":"用户已经存在 or 查询出错"}
+{"level":"INFO","time":"2024-02-02T15:13:21.447+0800","caller":"logger/logger.go:105","msg":"/user/signup","status":400,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.005487291}
+{"level":"INFO","time":"2024-02-02T15:14:11.140+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"dpple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"INFO","time":"2024-02-02T15:15:12.357+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"fspple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"INFO","time":"2024-02-02T15:15:12.390+0800","caller":"controllers/user.go:60","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2024-02-02T15:15:12.390+0800","caller":"logger/logger.go:105","msg":"/user/signup","status":200,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.034669625}
+{"level":"INFO","time":"2024-02-02T15:15:59.704+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"fspple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"ERROR","time":"2024-02-02T15:15:59.710+0800","caller":"controllers/user.go:56","msg":"logic.Signup() failed","error":"用户已经存在 or 查询出错"}
+{"level":"INFO","time":"2024-02-02T15:15:59.710+0800","caller":"logger/logger.go:105","msg":"/user/signup","status":400,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.005813417}
+{"level":"DEBUG","time":"2024-02-02T15:18:07.750+0800","caller":"controllers/user.go:105","msg":"logic.Login() success"}
+{"level":"INFO","time":"2024-02-02T15:18:07.750+0800","caller":"logger/logger.go:105","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.009238084}
+{"level":"DEBUG","time":"2024-02-02T15:19:50.993+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2024-02-02T15:19:51.014+0800","caller":"mysql/community.go:81","msg":"insert into post failed","error":"Error 1264 (22003): Out of range value for column 'post_id' at row 1"}
+{"level":"ERROR","time":"2024-02-02T15:19:51.015+0800","caller":"mysql/community.go:71","msg":"create post failed","error":"Error 1264 (22003): Out of range value for column 'post_id' at row 1"}
+{"level":"ERROR","time":"2024-02-02T15:19:51.017+0800","caller":"redis/post.go:195","msg":"pipeline.Exec() failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T15:19:51.017+0800","caller":"logic/post.go:33","msg":"redis.CreatePost(postdata) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T15:19:51.017+0800","caller":"controllers/community.go:84","msg":"logic.CreatePost(post) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"INFO","time":"2024-02-02T15:19:51.017+0800","caller":"logger/logger.go:105","msg":"/community/2/createpost","status":500,"method":"POST","path":"/community/2/createpost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.024361709}
+{"level":"DEBUG","time":"2024-02-02T16:24:52.811+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2024-02-02T16:24:52.852+0800","caller":"mysql/community.go:83","msg":"insert into post failed","error":"Error 1264 (22003): Out of range value for column 'post_id' at row 1"}
+{"level":"ERROR","time":"2024-02-02T16:24:52.853+0800","caller":"mysql/community.go:72","msg":"create post failed","error":"Error 1264 (22003): Out of range value for column 'post_id' at row 1"}
+{"level":"ERROR","time":"2024-02-02T16:24:52.854+0800","caller":"redis/post.go:195","msg":"pipeline.Exec() failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:24:52.854+0800","caller":"logic/post.go:33","msg":"redis.CreatePost(postdata) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:24:52.854+0800","caller":"controllers/community.go:84","msg":"logic.CreatePost(post) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"INFO","time":"2024-02-02T16:24:52.854+0800","caller":"logger/logger.go:105","msg":"/community/2/createpost","status":500,"method":"POST","path":"/community/2/createpost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.043544417}
+{"level":"INFO","time":"2024-02-02T16:30:11.080+0800","caller":"controllers/user.go:40","msg":"SignUp with param","param":{"username":"fspple","password":"1234","email":"ddqq@gmail.com","gender":1}}
+{"level":"INFO","time":"2024-02-02T16:30:11.113+0800","caller":"controllers/user.go:60","msg":"logic.Signup() success"}
+{"level":"INFO","time":"2024-02-02T16:30:11.113+0800","caller":"logger/logger.go:105","msg":"/user/signup","status":200,"method":"POST","path":"/user/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.033637792}
+{"level":"DEBUG","time":"2024-02-02T16:30:18.345+0800","caller":"controllers/user.go:105","msg":"logic.Login() success"}
+{"level":"INFO","time":"2024-02-02T16:30:18.345+0800","caller":"logger/logger.go:105","msg":"/user/login","status":200,"method":"POST","path":"/user/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.009860333}
+{"level":"DEBUG","time":"2024-02-02T16:30:42.408+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2024-02-02T16:30:42.437+0800","caller":"redis/post.go:195","msg":"pipeline.Exec() failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:30:42.437+0800","caller":"logic/post.go:33","msg":"redis.CreatePost(postdata) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:30:42.437+0800","caller":"controllers/community.go:84","msg":"logic.CreatePost(post) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"INFO","time":"2024-02-02T16:30:42.437+0800","caller":"logger/logger.go:105","msg":"/community/2/createpost","status":500,"method":"POST","path":"/community/2/createpost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.029129292}
+{"level":"DEBUG","time":"2024-02-02T16:34:57.999+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2024-02-02T16:34:58.039+0800","caller":"redis/post.go:195","msg":"pipeline.Exec() failed","error":"redis: can't marshal *models.Post (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:34:58.039+0800","caller":"logic/post.go:33","msg":"redis.CreatePost(postdata) failed","error":"redis: can't marshal *models.Post (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:34:58.039+0800","caller":"controllers/community.go:84","msg":"logic.CreatePost(post) failed","error":"redis: can't marshal *models.Post (implement encoding.BinaryMarshaler)"}
+{"level":"INFO","time":"2024-02-02T16:34:58.039+0800","caller":"logger/logger.go:105","msg":"/community/2/createpost","status":500,"method":"POST","path":"/community/2/createpost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.040730416}
+{"level":"DEBUG","time":"2024-02-02T16:36:14.902+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2024-02-02T16:36:14.932+0800","caller":"redis/post.go:197","msg":"pipeline.Exec() failed","error":"redis: can't marshal *models.Post (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:36:14.932+0800","caller":"logic/post.go:33","msg":"redis.CreatePost(postdata) failed","error":"redis: can't marshal *models.Post (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:36:14.932+0800","caller":"controllers/community.go:84","msg":"logic.CreatePost(post) failed","error":"redis: can't marshal *models.Post (implement encoding.BinaryMarshaler)"}
+{"level":"INFO","time":"2024-02-02T16:36:14.932+0800","caller":"logger/logger.go:105","msg":"/community/2/createpost","status":500,"method":"POST","path":"/community/2/createpost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.031318792}
+{"level":"DEBUG","time":"2024-02-02T16:38:58.956+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2024-02-02T16:38:58.989+0800","caller":"redis/post.go:197","msg":"pipeline.Exec() failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:38:58.989+0800","caller":"logic/post.go:33","msg":"redis.CreatePost(postdata) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:38:58.990+0800","caller":"controllers/community.go:84","msg":"logic.CreatePost(post) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"INFO","time":"2024-02-02T16:38:58.990+0800","caller":"logger/logger.go:105","msg":"/community/2/createpost","status":500,"method":"POST","path":"/community/2/createpost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.033899042}
+{"level":"DEBUG","time":"2024-02-02T16:43:55.734+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"ERROR","time":"2024-02-02T16:43:55.777+0800","caller":"redis/post.go:196","msg":"pipeline.Exec() failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:43:55.778+0800","caller":"logic/post.go:33","msg":"redis.CreatePost(postdata) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"ERROR","time":"2024-02-02T16:43:55.778+0800","caller":"controllers/community.go:84","msg":"logic.CreatePost(post) failed","error":"redis: can't marshal redis.Z (implement encoding.BinaryMarshaler)"}
+{"level":"INFO","time":"2024-02-02T16:43:55.778+0800","caller":"logger/logger.go:105","msg":"/community/2/createpost","status":500,"method":"POST","path":"/community/2/createpost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.043947084}
+{"level":"DEBUG","time":"2024-02-02T16:47:37.236+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2024-02-02T16:47:37.275+0800","caller":"redis/post.go:209","msg":"CreatePost success","post_id":-120782374043648}
+{"level":"INFO","time":"2024-02-02T16:47:37.275+0800","caller":"logger/logger.go:105","msg":"/community/2/createpost","status":200,"method":"POST","path":"/community/2/createpost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.039231458}
+{"level":"DEBUG","time":"2024-02-02T16:48:23.881+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2024-02-02T16:48:23.927+0800","caller":"redis/post.go:209","msg":"CreatePost success","post_id":-120586734927872}
+{"level":"INFO","time":"2024-02-02T16:48:23.927+0800","caller":"logger/logger.go:105","msg":"/community/2/createpost","status":200,"method":"POST","path":"/community/2/createpost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.045804333}
+{"level":"ERROR","time":"2024-02-02T16:58:46.231+0800","caller":"pkg/jwt.go:87","msg":"ParseToken failed","error":"token has invalid claims: token is expired"}
+{"level":"INFO","time":"2024-02-02T16:58:46.231+0800","caller":"logger/logger.go:105","msg":"/community/2/post/-120586734927872","status":401,"method":"GET","path":"/community/2/post/-120586734927872","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.000336208}
+{"level":"DEBUG","time":"2024-02-02T16:59:05.211+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2024-02-02T16:59:05.237+0800","caller":"logger/logger.go:105","msg":"/community/2/post/-120586734927872","status":200,"method":"GET","path":"/community/2/post/-120586734927872","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.026885042}
+{"level":"DEBUG","time":"2024-02-02T17:01:18.337+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"INFO","time":"2024-02-02T17:01:18.347+0800","caller":"logger/logger.go:105","msg":"/community/post/-120586734927872","status":200,"method":"GET","path":"/community/post/-120586734927872","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.010394583}
+{"level":"DEBUG","time":"2024-02-02T17:02:19.893+0800","caller":"pkg/jwt.go:93","msg":"ParseToken success"}
+{"level":"DEBUG","time":"2024-02-02T17:02:19.911+0800","caller":"logic/post.go:49","msg":"走缓存了兄弟"}
+{"level":"INFO","time":"2024-02-02T17:02:19.912+0800","caller":"logger/logger.go:105","msg":"/community/post/-120586734927872","status":200,"method":"GET","path":"/community/post/-120586734927872","query":"","ip":"::1","user-agent":"PostmanRuntime/7.36.1","errors":"","cost":0.018756625}

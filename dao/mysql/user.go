@@ -1,12 +1,15 @@
 package mysql
 
-import "go_web_app/models"
+import (
+	"go_web_app/models"
+	"time"
+)
 
 // InsertUser 函数用于在数据库中插入一条新的用户记录。
 func InsertUser(user *models.User) error {
-	sql := "insert into user(user_id, name,  password, email, gender)" +
-		"values(?,?,?,?,?)"
-	_, err := sqlxdb.Exec(sql, user.UserID, user.Username, user.PassWord, user.Email, user.Gender)
+	sql := "insert into user(user_id, name,  password, email, gender, create_at, update_at)" +
+		"values(?,?,?,?,?,?,?)"
+	_, err := sqlxdb.Exec(sql, user.UserID, user.Username, user.PassWord, user.Email, user.Gender, time.Now(), time.Now())
 
 	return err
 }

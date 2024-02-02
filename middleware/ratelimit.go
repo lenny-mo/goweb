@@ -33,7 +33,7 @@ func RateLimit(ctx context.Context, chanName string, capacity int64) func(c *gin
 	})
 	limiter := rateLimiterIface.(*rateLimiter) // 指针类型可以直接修改结构体内部的值，而不需要进行值的拷贝
 	if !loaded {
-		perRequest := time.Second * 10 / time.Duration(capacity) // 每个请求的间隔
+		perRequest := time.Second / time.Duration(capacity) // 每个请求的间隔
 		fmt.Println("每个请求的间隔: ", perRequest)
 		limiter.once.Do(func() {
 			fmt.Println("开启排水功能：", chanName)

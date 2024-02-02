@@ -1,6 +1,7 @@
 package redis
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"go_web_app/dao/mysql"
@@ -8,9 +9,8 @@ import (
 	"strconv"
 	"time"
 
-	"go.uber.org/zap"
-
 	"github.com/go-redis/redis"
+	"go.uber.org/zap"
 )
 
 const (
@@ -45,6 +45,10 @@ var (
  *
  *
  */
+
+func GetPostById(postid int64) ([]byte, error) {
+	return redisClient.Get(strconv.FormatInt(postid, 10)).Bytes()
+}
 
 func VoteForPost(v *models.VoteData, userid int64) error {
 	// 1. 判断投票时间是否在有效期内
@@ -166,25 +170,42 @@ func VoteForPost(v *models.VoteData, userid int64) error {
 
 // CreatePost 将帖子创建时间插入到redis中
 func CreatePost(post *models.Post) error {
-	pipeline := redisClient.TxPipeline()
 
-	// 1. 将帖子创建时间插入到redis的post:time zset中
-	pipeline.ZAdd(PostTimeZSetKey, redis.Z{Score: float64(post.CreateAt.Unix()), Member: strconv.FormatInt(post.PostID, 10)})
-
-	// 2. 使用当前时间作为帖子的初始score插入到post:score zset中
-	pipeline.ZAdd(PostVoteZSetKey, redis.Z{Score: float64(post.CreateAt.Unix()), Member: strconv.FormatInt(post.PostID, 10)})
-
-	// 3. 根据帖子的社区id，将帖子id插入到社区对应的set中
-	pipeline.SAdd(CommunityPrefix+strconv.FormatInt(post.CommunityID, 10), strconv.FormatInt(post.PostID, 10))
-
-	cmd, err := pipeline.Exec()
-
+	// 序列化
+	bytes, err := json.Marshal(post)
 	if err != nil {
-		zap.L().Error("pipeline.Exec() failed", zap.Error(err))
+		zap.L().Error(err.Error())
 		return err
 	}
-	fmt.Println(cmd)
-	fmt.Println("创建post并且更新redis")
+
+	// 添加key value =  postid, post
+	err = redisClient.Set(strconv.FormatInt(post.PostID, 10), bytes, 24*time.Hour).Err()
+	if err != nil {
+		zap.L().Error("Set failed", zap.Error(err))
+		return err
+	}
+
+	// 1. 将帖子创建时间插入到redis的post:time zset中
+	err = redisClient.ZAdd(PostTimeZSetKey, redis.Z{Score: float64(post.CreateAt.Unix()), Member: bytes}).Err()
+	if err != nil {
+		zap.L().Error("ZAdd (PostTimeZSet) failed", zap.Error(err))
+		return err
+	}
+
+	// 2. 使用当前时间作为帖子的初始score插入到post:score zset中
+	err = redisClient.ZAdd(PostVoteZSetKey, redis.Z{Score: float64(post.Score), Member: bytes}).Err()
+	if err != nil {
+		zap.L().Error("ZAdd (PostVoteZSet) failed", zap.Error(err))
+		return err
+	}
+
+	// 3. 根据帖子的社区id，将帖子id插入到社区对应的set中
+	err = redisClient.SAdd(CommunityPrefix+strconv.FormatInt(post.CommunityID, 10), bytes).Err()
+	if err != nil {
+		zap.L().Error("SAdd failed", zap.Error(err))
+		return err
+	}
+
 	zap.L().Info("CreatePost success", zap.Int64("post_id", post.PostID))
 
 	return nil

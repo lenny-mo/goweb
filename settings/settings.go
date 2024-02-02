@@ -3,6 +3,8 @@ package settings
 import (
 	"fmt"
 
+	"go.uber.org/zap"
+
 	"github.com/fsnotify/fsnotify" // 监控文件
 
 	"github.com/spf13/viper"
@@ -18,9 +20,6 @@ func Init(configFileName string) error {
 	// 2. 两个命令搭配使用
 	//viper.SetConfigName("config") // 设置配置文件的名称, 路径在项目根目录下的config.yaml，不包括后缀
 	//viper.AddConfigPath(".")      // 添加配置文件的查找路径, 项目的根目录，可以添加多个路径
-
-	// 配合etcd使用,
-	// viper.SetConfigType("yaml")
 
 	err := viper.ReadInConfig() // 读取配置文件内容
 	if err != nil {
@@ -42,9 +41,12 @@ func Init(configFileName string) error {
 	// fsnotify.Event 可以包含文件被修改的信息
 	viper.OnConfigChange(func(e fsnotify.Event) {
 		fmt.Println("Config file changed:", e.Name) // e.Name 返回被修改的文件名
-		fmt.Println("Operation type:", e.Op)        // e.Op 返回对文件进行的操作
+		zap.L().Info(fmt.Sprintf("Config file %s has been changed:", e.Name))
+		fmt.Println("Operation type:", e.Op) // e.Op 返回对文件进行的操作
+		zap.L().Info(fmt.Sprintf("Operation type %s has been done on this  file", e.Op.String()))
 		if err := viper.Unmarshal(Config); err != nil {
 			fmt.Println("Update config file")
+			zap.L().Info(fmt.Sprintf("Update config file %s", e.Name))
 		}
 	})
 

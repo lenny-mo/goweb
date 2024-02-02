@@ -43,7 +43,7 @@ func SignUpHandler(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(c.Request.Context(), 2*time.Second)
 	defer cancel()
 
-	res := make(chan error) // 定义业务逻辑使用的channel
+	res := make(chan error, 1) // 定义业务逻辑使用的channel
 
 	go func() {
 		err := logic.Signup(param)
@@ -81,7 +81,6 @@ func LoginHandler(c *gin.Context) {
 		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
 		return
 	}
-
 	ctx, cancel := context.WithTimeout(c.Request.Context(), 2*time.Second)
 	defer cancel()
 

@@ -18,7 +18,6 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-// Init 初始化lg logger
 // Init 初始化日志系统
 func Init(conf *settings.LogConfig, mode string) (err error) {
 	// 创建一个WriteSyncer（日志写入器），用于写入日志文件

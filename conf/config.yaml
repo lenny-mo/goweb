@@ -1,33 +1,28 @@
 app:
-  name: "web app"
+  name: "post app"
   mode: "dev"
-  port: 8081
+  port: 8083
   version: "1.0.0"
-  starttime: "2023-10-01 00:00:00"
-  machineid: 1
-
+  machine_id: 1
 log:
   level: "debug"
-  filename: "webapp.log"
+  filename: "postapp.log"
   maxsize: 100
   maxbackups: 10
   maxage: 30
-
 mysql:
-  host: mysql3308
-  port: 3306
+  host: 127.0.0.1
+  port: 3307
   user: "root"
   password: "123456"
   dbname: "test"
   maxidle: 10
   maxopen: 10
-
 redis:
-  host: redis6380
+  host: 127.0.0.1
   port: 6379
   db: 0
   password: ""
   poolsize: 100
-
 auth:
   jwtexpire: 100

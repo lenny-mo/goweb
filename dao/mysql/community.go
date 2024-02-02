@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"database/sql"
+	"fmt"
 	"go_web_app/models"
 
 	"go.uber.org/zap"
@@ -69,10 +70,13 @@ func CreatePost(post *models.Post) (err error) {
 	defer func() { // 如果失败，回滚
 		if err != nil {
 			zap.L().Error("create post failed", zap.Error(err))
-			tx.Rollback()
+			if err = tx.Rollback(); err != nil {
+				zap.L().Error(err.Error())
+			}
 		}
 	}()
 
+	fmt.Println(post)
 	sqlstr := "insert into post(post_id, title, content, author_id, community_id, create_at, update_at) values(?, ?, ?, ?, ?, ?, ?)"
 	_, err = sqlxdb.Exec(sqlstr, post.PostID, post.Title, post.Content, post.AuthorID, post.CommunityID, post.CreateAt, post.UpdateAt)
 	if err != nil {
@@ -80,7 +84,7 @@ func CreatePost(post *models.Post) (err error) {
 		return err
 	}
 
-	tx.Commit()
+	err = tx.Commit()
 	return nil
 }
 
@@ -158,7 +162,6 @@ func GetPostListById(id, offset, limit int64) ([]*models.APIPostDetail, error) {
 
 	// 遍历postlist，查询每个帖子对应的作者信息和社区信息
 	apiPostList, err := AddAuthorandCommunityName(postlist)
-
 	return apiPostList, err
 }
 

@@ -15,6 +15,7 @@ import (
 	"os"
 	"os/signal"
 	"runtime/debug"
+	"sync"
 	"syscall"
 	"time"
 
@@ -32,12 +33,12 @@ func main() {
 
 	// 日志并不是立即被保存，而是暂时存放在内存中。
 	// 当内存中的日志量达到一定的量时，再将这些日志批量写入到磁盘中。
-	// 无论程序是正常结束还是异常退出，都会确保这些日志被保存到文件或其他存储位置。
+	// 在程序退出的时候调用sync方法把缓存区日志罗盘
 	defer zap.L().Sync()
 
 	// 从终端接收配置文件路径
 	var configFile string
-	flag.StringVar(&configFile, "c", "config.yaml", "配置文件的路径")
+	flag.StringVar(&configFile, "c", "./conf/config.yaml", "配置文件的路径")
 	flag.Parse()
 
 	// 1. 初始化配置文件
@@ -45,7 +46,10 @@ func main() {
 		fmt.Println("Init settings failed, err: ", err)
 		panic(err)
 	}
+	fmt.Println(settings.Config.ToString())
 
+	// --------------------- 后续的配置都是在拿到配置文件结构体后进行， 这里使用了BDD：不要隐式引用外部依赖
+	//
 	// 2. log文件初始化
 	if err := logger.Init(settings.Config.LogConfig, settings.Config.Mode); err != nil {
 		fmt.Println("Init logger failed, err: ", err)
@@ -71,14 +75,19 @@ func main() {
 	defer redis.Close()
 
 	// 5. 注册路由
-	router, err := router.Init()
+	ctx, cancel := context.WithCancel(context.Background()) // 主函数退出的时候，停止路由中的goroutine
+	defer cancel()
+	router, err := router.Init(ctx)
 	if err != nil {
 		fmt.Println("Init router failed, err: ", err)
+		zap.L().Error(fmt.Sprintf("Init router failed, err: %v", err))
 		panic(err)
 	}
 
 	// 6. 注册雪花算法
-	if err := snowflake.Init(settings.Config.StartTime, settings.Config.MachineId); err != nil {
+	currentTime := time.Now()
+	formattedTime := currentTime.Format("2006-01-02 15:04:05")
+	if err := snowflake.Init(formattedTime, settings.Config.MachineId); err != nil {
 		fmt.Println("Init snowflake failed, err: ", err)
 		panic(err)
 	}
@@ -92,26 +101,33 @@ func main() {
 	}
 
 	// 开启goroutine启动服务
-	fmt.Println("启动服务")
 	go func() {
 		if err := server.ListenAndServe(); err != nil {
 			fmt.Println("ListenAndServe failed, err: ", err)
-			panic(err)
+			zap.L().Error(err.Error())
 		}
 	}()
 
-	quit := make(chan os.Signal)                         // 创建一个无缓冲的通道
-	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM) // 接收ctrl+c和kill信号
-	<-quit
+	// 实现优雅关机
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	// 使用waitgroup 等待优雅关闭结束
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func(wg *sync.WaitGroup) {
+		defer wg.Done()
+		<-quit
+		zap.L().Info("Shutdown Server ...")
 
-	// 关闭服务
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
+		// 关闭服务
+		ctxTimeout, cancelTimeout := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancelTimeout()
 
-	if err := server.Shutdown(ctx); err != nil {
-		zap.L().Error("Server shutdown failed, err: ", zap.Error(err))
-	}
+		if err := server.Shutdown(ctxTimeout); err != nil {
+			zap.L().Error("Server shutdown failed, err: ", zap.Error(err))
+		}
+		zap.L().Info("Server exit")
+	}(&wg)
 
-	zap.L().Info("Server exit")
-
+	wg.Wait()
 }

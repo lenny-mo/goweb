@@ -1,5 +1,7 @@
 package settings
 
+import "fmt"
+
 // -------------------------- config struct --------------------------- //
 var (
 	Config = new(Conf)
@@ -7,7 +9,7 @@ var (
 
 type Conf struct {
 	*AppConfig   `mapstructure:"app"`   // AppConfig 是应用的配置。
-	*LogConfig   `mapstructure:"Log"`   // LogConfig 是应用的日志配置。
+	*LogConfig   `mapstructure:"log"`   // LogConfig 是应用的日志配置。
 	*MySQLConfig `mapstructure:"mysql"` // MySQLConfig 是应用的 MySQL 数据库配置。
 	*RedisConfig `mapstructure:"redis"` // RedisConfig 是应用的 Redis 数据库配置。
 }
@@ -18,7 +20,6 @@ type AppConfig struct {
 	Mode      string `mapstructure:"mode"`      // Mode 是应用的运行模式，例如：development, production等。
 	Version   string `mapstructure:"version"`   // Version 是应用的版本号。
 	Port      int    `mapstructure:"port"`      // Port 是应用监听的端口号。
-	StartTime string `mapstructure:"starttime"` // StartTime 是雪花算法的起始时间。
 	MachineId int64  `mapstructure:"machineid"` // MachineId 是雪花算法的机器ID。
 }
 
@@ -49,4 +50,12 @@ type RedisConfig struct {
 	Port     int    `mapstructure:"port"`     // Port 表示 Redis 数据库的端口号。
 	DB       int    `mapstructure:"db"`       // DB 表示要连接的 Redis 数据库的编号。
 	PoolSize int    `mapstructure:"poolsize"` // PoolSize 表示连接池的大小。
+}
+
+// ToString converts the configuration struct to a string.
+func (c *Conf) ToString() string {
+	return fmt.Sprintf(
+		"AppConfig: %+v\nLogConfig: %+v\nMySQLConfig: %+v\nRedisConfig: %+v\n",
+		c.AppConfig, c.LogConfig, c.MySQLConfig, c.RedisConfig,
+	)
 }

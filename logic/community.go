@@ -10,7 +10,6 @@ import (
 
 // GetCommunityList 获取社区列表
 func GetCommunityList() (data any, err error) {
-	// logic层会非常复杂
 	// 1. 查询所有社区的信息
 	data, err = mysql.GetCommunityList()
 	if err != nil {

@@ -36,8 +36,11 @@ func Signup(params *models.SignupParam) error {
 		Gender:   params.Gender,
 	}
 
-	// 2. 保存User实例进数据库
+	// cache aside pattern
+	// 保存User实例进数据库
 	mysql.InsertUser(user)
+
+	// 写入redis TODO
 
 	return nil
 }

@@ -1,4 +1,8 @@
-.PHONY: all build run gotool clean help
+.PHONY: all build run gotool clean help \
+ 	vegetaWithReport \
+ 	vegetaWithEncodeStorage	\
+ 	vegetaGenerateHtml
+
 BINARY="go_web_app"
 
 all: gotool build
@@ -16,3 +20,23 @@ gotool:
 clean:
 	@if [ -f ${BINARY} ] ; then rm ${BINARY} ; fi
 
+vegetaWithReport:
+	vegeta -cpus 1 attack \
+    -targets=./vegeta/targets.txt \
+    -duration=30s \
+    -connections=100 \
+    -rate=500 \
+    -format=http | \
+    vegeta report -type=text -every=2s | tee vegetaTestWithReport.txt
+
+vegetaWithEncodeStorage:
+	vegeta -cpus 1 attack \
+    -targets=./vegeta/targets.txt \
+    -duration=30s \
+    -connections=100 \
+    -rate=500 \
+    -format=http | \
+    vegeta encode > vegetaTestWithEncode.json
+
+vegetaGenerateHtml: vegetaWithEncodeStorage
+	 vegeta plot vegetaTestWithEncode.json > plot.html

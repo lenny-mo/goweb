@@ -1,11 +1,15 @@
 package logic
 
 import (
+	"encoding/json"
+	"errors"
 	"go_web_app/dao/mysql"
 	"go_web_app/dao/redis"
 	"go_web_app/models"
 	"go_web_app/pkg/snowflake"
 	"time"
+
+	redisv9 "github.com/redis/go-redis/v9"
 
 	"go.uber.org/zap"
 )
@@ -15,6 +19,8 @@ func CreatePost(post *models.Post) (err error) {
 	post.PostID = snowflake.GetId() // 生成post_id
 	// 2. 添加时间
 	post.CreateAt, post.UpdateAt = time.Now(), time.Now()
+
+	// cache aside pattern
 	// 3. 插入mysql
 	err = mysql.CreatePost(post)
 	if err != nil {
@@ -30,8 +36,26 @@ func CreatePost(post *models.Post) (err error) {
 	return
 }
 
-func GetPostDetailById(postId int64) (data *models.APIPostDetail, err error) {
-	// 1. 查询帖子详情
+func GetPostDetailById(postId int64) (data interface{}, err error) {
+	// cache aside pattern
+	// 先缓存再看数据库
+	if bytes, err := redis.GetPostById(postId); err != nil {
+		if !errors.Is(err, redisv9.Nil) {
+			zap.L().Error(err.Error())
+			return data, err
+		}
+	} else {
+		// 反序列化数据并返回
+		zap.L().Debug("走缓存了兄弟")
+		p := new(models.Post)
+		if err := json.Unmarshal(bytes, p); err != nil {
+			zap.L().Error(err.Error())
+			return data, err
+		}
+		return p, err
+	}
+
+	// 从mysql中找
 	data, err = mysql.GetPostDetailById(postId)
 	if err != nil {
 		zap.L().Error("mysql.GetPostDetailById(postId) failed", zap.Error(err))
@@ -43,6 +67,7 @@ func GetPostDetailById(postId int64) (data *models.APIPostDetail, err error) {
 // GetPostListByCommunityId 根据社区id查询帖子列表
 //
 // 没有排行榜也没有投票数据
+// TODO: 深分页查询优化
 func GetPostListByCommunityId(id, offset, limit int64) (postlist []*models.APIPostDetail, err error) {
 	// 1. 查询帖子列表, 这时候的post信息里面没有作者名字和社区名字
 	postlist, err = mysql.GetPostListById(id, offset, limit)
