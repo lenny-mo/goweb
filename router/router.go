@@ -40,12 +40,8 @@ func Init(ctx context.Context) (*gin.Engine, error) {
 		communityGroup.POST("/:id/createpost", controllers.CreatePostHandler)
 		// 业务路由, 通过帖子的id访问帖子详情
 		communityGroup.GET("/post/:post_id", controllers.GetPostDetailHandler)
-		// 获取帖子列表
-		communityGroup.GET("/:id/postlist", controllers.GetPostListHandler)
 		// 给帖子投票
-		communityGroup.POST("/:id/post/vote", controllers.PostVoteHandler)
-		// 根据时间or 分数来对post list 进行排序，
-		communityGroup.GET("/sortedpost", controllers.SortedPostHandler)
+		communityGroup.POST("/post/vote", controllers.PostVoteHandler)
 		// 根据社区id, 时间or 分数来对post list 进行排序
 		communityGroup.GET("/:id/sortedpost", controllers.CommunitySortedPostHandler)
 	}

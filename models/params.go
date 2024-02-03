@@ -15,8 +15,9 @@ type LoginParam struct {
 }
 
 type VoteData struct {
-	PostID int64 `json:"post_id,string" binding:"required"`
-	Vote   int8  `json:"vote,string" binding:"oneof=-1 0 1"` // 1赞成 0取消赞成 -1反对, 不要设置required
+	PostID      int64  `json:"post_id,string" binding:"required"`
+	Vote        int8   `json:"vote,string" binding:"oneof=-1 0 1"` // 1赞成 0取消赞成 -1反对, 不要设置required
+	CommunityID string `json:"community_id" binding:"required"`
 }
 
 // PostListParam 获取帖子列表的请求参数

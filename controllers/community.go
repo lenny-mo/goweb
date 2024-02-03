@@ -10,55 +10,6 @@ import (
 	"go.uber.org/zap"
 )
 
-// CommunityListHandler 获取社区的所有分类
-// PingExample godoc
-// @Summary ping example
-// @Schemes
-// @Description do ping
-// @Tags example
-// @Accept json
-// @Produce json
-// @Success 200 {string} Helloworld
-// @Router /example/helloworld [get]
-func CommunityListHandler(c *gin.Context) {
-	// 查询所有社区的信息
-	// 2. 业务逻辑：查询所有社区的信息
-	data, err := logic.GetCommunityList()
-	if err != nil {
-		zap.L().Error("logic.GetCommunityList() failed", zap.Error(err)) // 不要把服务端报错返回给前端
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
-	}
-
-	// 3. 返回响应
-	ReturnResponse(c, http.StatusOK, SuccessCode, data)
-}
-
-// CommunityDetailHandler 获取某个社区的详细信息
-func CommunityDetailHandler(c *gin.Context) {
-	// 1. 获取社区id
-	communityIdstr := c.Param("id")
-	// 做参数校验
-	if len(communityIdstr) == 0 {
-		zap.L().Error("invalid community id")
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
-		return
-	}
-	// 转化成int64
-	communityId, err := strconv.ParseInt(communityIdstr, 10, 64)
-	if err != nil {
-		zap.L().Error("strconv.ParseInt(communityIdstr, 10, 64) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
-	}
-
-	// 2. 业务逻辑 通过id查询社区详情
-	data, err := logic.GetCommunityDetailById(communityId)
-	if err != nil {
-		zap.L().Error("logic.GetCommunityDetailById(communityId) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
-	}
-	ReturnResponse(c, http.StatusOK, SuccessCode, data)
-}
-
 func CreatePostHandler(c *gin.Context) {
 	// 1. 获取参数及参数校验
 	post := new(models.Post)
@@ -118,51 +69,6 @@ func GetPostDetailHandler(c *gin.Context) {
 	ReturnResponse(c, http.StatusOK, SuccessCode, data)
 }
 
-// GetPostListHandler 获取社区下的帖子列表
-func GetPostListHandler(c *gin.Context) {
-	// query 从url 的?后面获取参数
-	offsetStr := c.Query("offset")
-	limitStr := c.Query("limit")
-	if len(offsetStr) == 0 || len(limitStr) == 0 {
-		zap.L().Error("invalid offset or limit")
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
-		return
-	}
-	offset, err1 := strconv.ParseInt(offsetStr, 10, 64)
-	limit, err2 := strconv.ParseInt(limitStr, 10, 64)
-	if err1 != nil || err2 != nil {
-		zap.L().Error("strconv.ParseInt(offsetStr, 10, 64) failed", zap.Error(err1))
-		zap.L().Error("strconv.ParseInt(limitStr, 10, 64) failed", zap.Error(err2))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
-		return
-	}
-
-	// 获取社区的id, 从动态路由中获取，查询所有的帖子，要求community id= 指定的id
-	communityIdStr := c.Param("id")
-	if len(communityIdStr) == 0 {
-		zap.L().Error("invalid community id", zap.String("communityIdStr", communityIdStr))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
-		return
-	}
-	// 转化成int64
-	communityId, err := strconv.ParseInt(communityIdStr, 10, 64)
-	if err != nil {
-		zap.L().Error("strconv.ParseInt(communityIdStr, 10, 64) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
-		return
-	}
-
-	// 2. 业务逻辑处理: 通过community id 查询帖子列表
-	data, err := logic.GetPostListByCommunityId(communityId, offset, limit)
-	if err != nil {
-		zap.L().Error("logic.GetPostListByCommunityId(communityId) failed", zap.Int64("communityId", communityId), zap.Error(err))
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
-		return
-	}
-
-	ReturnResponse(c, http.StatusOK, SuccessCode, data)
-}
-
 func CommunitySortedPostHandler(c *gin.Context) {
 	// 1. 获取社区id, 动态路由
 	communityID := c.Param("id")
@@ -181,8 +87,6 @@ func CommunitySortedPostHandler(c *gin.Context) {
 	}
 
 	// 3. 业务逻辑处理: 传递社区id, orderstr, offset, limit
-	// 创建一个根据社区id和order有交集的key，产生一个新的zset
-	// 根据score返回这新的zset的所有元素
 	data, err := logic.CommunitySortedPost(communityID, querydata)
 	if err != nil {
 		zap.L().Error("logic.CommunitySortedPost(communityID, querydata) failed", zap.Error(err))

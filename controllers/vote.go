@@ -27,7 +27,7 @@ func PostVoteHandler(c *gin.Context) {
 	}
 
 	// 业务逻辑: 投票
-	userid := c.GetInt64("userid")
+	userid := c.GetInt64("userid") // JWT 获取到用户信息
 	err := logic.VoteForPost(votedata, userid)
 	if err != nil {
 		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
@@ -35,27 +35,4 @@ func PostVoteHandler(c *gin.Context) {
 	}
 
 	ReturnResponse(c, http.StatusOK, SuccessCode)
-}
-
-// SortedPostHandler 获取社区下的帖子列表, 并且根据时间或者投票分数进行排序
-func SortedPostHandler(c *gin.Context) {
-	// get请求，从url 中获取参数
-	// 跳过offset前面的行数，从offset+1行开始取limit 行数据
-	querydata := new(models.PostListParam)
-	if err := c.ShouldBind(querydata); err != nil {
-		zap.L().Error("c.ShouldBindJSON(querydata) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
-		return
-	}
-
-	// 2. 根据上述的offset和limit 查询redis 对应的数据，下放到logic层
-	data, err := logic.GetSortedPost(querydata)
-	if err != nil {
-		zap.L().Error("logic.GetSortedPost(querydata) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
-	}
-
-	// 3.
-	ReturnResponse(c, http.StatusOK, SuccessCode, data)
-
 }
