@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"go_web_app/contextcode"
 	"go_web_app/logic"
 	"go_web_app/models"
 	"net/http"
@@ -19,10 +20,10 @@ func PostVoteHandler(c *gin.Context) {
 	if err := c.ShouldBindJSON(votedata); err != nil {
 		if errcheck, ok := err.(validator.ValidationErrors); ok {
 			zap.L().Error("c.ShouldBindJSON(votedata) failed", zap.Error(errcheck))
-			ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+			contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		}
 		zap.L().Error("c.ShouldBindJSON(votedata) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		return
 	}
 
@@ -30,9 +31,9 @@ func PostVoteHandler(c *gin.Context) {
 	userid := c.GetInt64("userid") // JWT 获取到用户信息
 	err := logic.VoteForPost(votedata, userid)
 	if err != nil {
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusInternalServerError, contextcode.InvalidParamCode)
 		return
 	}
 
-	ReturnResponse(c, http.StatusOK, SuccessCode)
+	contextcode.ReturnResponse(c, http.StatusOK, contextcode.SuccessCode)
 }

@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"go_web_app/contextcode"
 	"go_web_app/logic"
 	"go_web_app/models"
 	"net/http"
@@ -16,14 +17,14 @@ func CreatePostHandler(c *gin.Context) {
 	// 要获取body 中的json 数据，必须通过结构体绑定的形式，shouldbindwith
 	if err := c.ShouldBindJSON(post); err != nil {
 		zap.L().Error("c.ShouldBindJSON(post) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		return
 	}
 
-	id, ok := c.Get(ContextUserIDKey) // 应该是JWT提供了信息
+	id, ok := c.Get(contextcode.ContextUserIDKey) // 应该是JWT提供了信息
 	if !ok {
 		zap.L().Error("c.Get(ContextUserIDKey) failed")
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusInternalServerError, contextcode.InvalidParamCode)
 		return
 	}
 	post.AuthorID = id.(int64)
@@ -33,10 +34,10 @@ func CreatePostHandler(c *gin.Context) {
 	// 3. 返回响应
 	if err != nil {
 		zap.L().Error("logic.CreatePost(post) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusInternalServerError, contextcode.InvalidParamCode)
 		return
 	}
-	ReturnResponse(c, http.StatusOK, SuccessCode, nil)
+	contextcode.ReturnResponse(c, http.StatusOK, contextcode.SuccessCode, nil)
 }
 
 func GetPostDetailHandler(c *gin.Context) {
@@ -46,14 +47,14 @@ func GetPostDetailHandler(c *gin.Context) {
 	postIdStr := c.Param("post_id")
 	if len(postIdStr) == 0 {
 		zap.L().Error("invalid post id")
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		return
 	}
 	// 转化成int64 类型
 	postId, err := strconv.ParseInt(postIdStr, 10, 64)
 	if err != nil {
 		zap.L().Error("strconv.ParseInt(postIdStr, 10, 64) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		return
 	}
 
@@ -62,11 +63,11 @@ func GetPostDetailHandler(c *gin.Context) {
 	data, err := logic.GetPostDetailById(postId)
 	if err != nil {
 		zap.L().Error("logic.GetPostDetailById(postId) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusInternalServerError, contextcode.InvalidParamCode)
 		return
 	}
 	// 3. 返回响应
-	ReturnResponse(c, http.StatusOK, SuccessCode, data)
+	contextcode.ReturnResponse(c, http.StatusOK, contextcode.SuccessCode, data)
 }
 
 func CommunitySortedPostHandler(c *gin.Context) {
@@ -74,7 +75,7 @@ func CommunitySortedPostHandler(c *gin.Context) {
 	communityID := c.Param("id")
 	if len(communityID) == 0 {
 		zap.L().Error("invalid community id")
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		return
 	}
 
@@ -82,7 +83,7 @@ func CommunitySortedPostHandler(c *gin.Context) {
 	querydata := new(models.PostListParam)
 	if err := c.ShouldBind(querydata); err != nil {
 		zap.L().Error("c.ShouldBindJSON(querydata) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		return
 	}
 
@@ -90,11 +91,11 @@ func CommunitySortedPostHandler(c *gin.Context) {
 	data, err := logic.CommunitySortedPost(communityID, querydata)
 	if err != nil {
 		zap.L().Error("logic.CommunitySortedPost(communityID, querydata) failed", zap.Error(err))
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusInternalServerError, contextcode.InvalidParamCode)
 		return
 	}
 
 	zap.L().Info("logic.CommunitySortedPost(communityID, querydata) success", zap.Any("data", data))
-	ReturnResponse(c, http.StatusOK, SuccessCode, data)
+	contextcode.ReturnResponse(c, http.StatusOK, contextcode.SuccessCode, data)
 	return
 }

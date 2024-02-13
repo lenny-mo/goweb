@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"go_web_app/contextcode"
 	"go_web_app/logic"
 	"go_web_app/models"
 	"net/http"
@@ -14,12 +15,6 @@ import (
 	"github.com/gin-gonic/gin"
 
 	_ "github.com/go-playground/validator/v10"
-)
-
-const (
-	ContextUserIDKey   = "userID"
-	ContextUsernameKey = "username"
-	ExpireTimeKey      = "expireTime"
 )
 
 // SignUpHandler SignupHandler 注册用户
@@ -34,7 +29,7 @@ func SignUpHandler(c *gin.Context) {
 	if err := c.ShouldBindJSON(param); err != nil {
 		// 参数有误
 		zap.L().Error("SignUp with invalid param", zap.Error(err))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		return
 	}
 	zap.L().Info("SignUp with param", zap.Any("param", *param)) // 记录结构体信息
@@ -55,14 +50,14 @@ func SignUpHandler(c *gin.Context) {
 		if err != nil {
 			zap.L().Error("logic.Signup() failed", zap.Error(err))
 			// 3. 返回响应
-			ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+			contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		} else {
 			zap.L().Info("logic.Signup() success")
-			ReturnResponse(c, http.StatusOK, SuccessCode)
+			contextcode.ReturnResponse(c, http.StatusOK, contextcode.SuccessCode)
 		}
 	case <-ctx.Done(): // 如果超时
 		zap.L().Error("logic.Signup() timeout")
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusInternalServerError, contextcode.InvalidParamCode)
 	}
 }
 
@@ -78,7 +73,7 @@ func LoginHandler(c *gin.Context) {
 
 	if err := c.ShouldBindJSON(params); err != nil {
 		zap.L().Error("Login with invalid param", zap.Error(err))
-		ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		return
 	}
 	ctx, cancel := context.WithTimeout(c.Request.Context(), 2*time.Second)
@@ -100,28 +95,28 @@ func LoginHandler(c *gin.Context) {
 	case err := <-res:
 		if err != nil {
 			zap.L().Error("logic.Login() failed")
-			ReturnResponse(c, http.StatusBadRequest, InvalidParamCode)
+			contextcode.ReturnResponse(c, http.StatusBadRequest, contextcode.InvalidParamCode)
 		} else {
 			zap.L().Debug("logic.Login() success")
-			ReturnResponse(c, http.StatusOK, SuccessCode, accessToken, refreshToken)
+			contextcode.ReturnResponse(c, http.StatusOK, contextcode.SuccessCode, accessToken, refreshToken)
 		}
 	case <-ctx.Done():
 		zap.L().Error("logic.Login() timeout")
-		ReturnResponse(c, http.StatusInternalServerError, InvalidParamCode)
+		contextcode.ReturnResponse(c, http.StatusInternalServerError, contextcode.InvalidParamCode)
 	}
 }
 
 func IndexHandler(c *gin.Context) {
 	// 1. 获取用户ID和用户名
-	username, _ := c.Get(ContextUsernameKey)
-	userid, _ := c.Get(ContextUserIDKey)
-	expiretime, _ := c.Get(ExpireTimeKey)
+	username, _ := c.Get(contextcode.ContextUsernameKey)
+	userid, _ := c.Get(contextcode.ContextUserIDKey)
+	expiretime, _ := c.Get(contextcode.ExpireTimeKey)
 
 	if userid != -1 && username != "" {
 		fmt.Println("username: ", username, "userid: ", userid)
 	}
 
-	ReturnResponse(c, http.StatusOK, SuccessCode, gin.H{
+	contextcode.ReturnResponse(c, http.StatusOK, contextcode.SuccessCode, gin.H{
 		"username":      username,
 		"userid":        userid,
 		"expiretime":    expiretime,
