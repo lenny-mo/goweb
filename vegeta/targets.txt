@@ -1,6 +1,6 @@
-POST http://localhost:8081/user/login
+POST http://localhost:8083/user/login
 Content-Type: application/json
 @./vegeta/postdata.json
 
-GET http://localhost:8081/community/1/postlist?offset=30&limit=10
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJ1c2VyX2lkIjo2OTQ0MDE1OTI0NTk2NzM2LCJpc3MiOiJnb193ZWJfYXBwIiwiZXhwIjoxNzA0MjAyODE1fQ.IMeUTE31bN3VnhtXnJ5KREf0GyRrCvoScK-_tC6C6KI
+GET http://localhost:8083/community/2/sortedpost?offset=0&limit=30&order=vote
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZzcHBsZSIsInVzZXJfaWQiOi0xMTk0MTU2MjY1MzA4MTYsImlzcyI6ImdvX3dlYl9hcHAiLCJleHAiOjE3MDc3NDA4OTN9.CqVm7WlKeqHHairZzxM8qxS89q93IQBJX_sXUo-ztH8

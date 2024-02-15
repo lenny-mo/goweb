@@ -38,5 +38,5 @@ vegetaWithEncodeStorage:
     -format=http | \
     vegeta encode > vegetaTestWithEncode.json
 
-vegetaGenerateHtml: vegetaWithEncodeStorage
+`vegetaGenerateHtml`: vegetaWithEncodeStorage
 	 vegeta plot vegetaTestWithEncode.json > plot.html
